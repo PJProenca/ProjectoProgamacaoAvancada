@@ -8,7 +8,7 @@ class BD_Open_Helper(context : Context) : SQLiteOpenHelper(context,NOME,null,VER
     override fun onCreate(db: SQLiteDatabase?) {
         requireNotNull(db)
         TabelaPacientes(db).cria()
-
+        TabelaAlimentos(db).cria()
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
