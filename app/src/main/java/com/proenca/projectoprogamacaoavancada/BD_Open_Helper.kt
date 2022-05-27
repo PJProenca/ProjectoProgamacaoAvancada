@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class BD_Open_Helper(context : Context) : SQLiteOpenHelper(context,NOME,null,VERSAO){
     override fun onCreate(db: SQLiteDatabase?) {
-        TODO("Not yet implemented")
+        requireNotNull(db)
+        TabelaPacientes(db).cria()
+
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
