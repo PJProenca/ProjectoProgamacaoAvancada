@@ -15,6 +15,7 @@ class TabelaAlimento_Registo(db: SQLiteDatabase):TabelasBD(db,NOME) {
     }
 
     companion object{
+
         const val NOME= "Alimento_Registo"
         const val REG_ID_ALIMENTO="Registo_Id_Alimento"
         const val REG_ID_PACIENTE="Registo_Id_Paciente"
