@@ -1,5 +1,6 @@
 package com.proenca.projectoprogamacaoavancada
 
+import android.database.sqlite.SQLiteDatabase
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -18,6 +19,15 @@ import org.junit.Before
 class InstrumentedTest {
     private fun appContext() = InstrumentationRegistry.getInstrumentation().targetContext
 
+    private fun getWritableDatabase(): SQLiteDatabase {
+        val openHelper = BD_Open_Helper(appContext())
+        return openHelper.writableDatabase
+    }
+
+    private fun inserirPacientes(db: SQLiteDatabase, pacientes: Pacientes) {
+        pacientes.id = TabelaPacientes(db).insert(pacientes.toContentValues())
+        assertNotEquals(-1, pacientes.id)
+    }
     @Before
 
     fun apagarBD(){
@@ -29,6 +39,15 @@ class InstrumentedTest {
     fun abrirBD(){
         val db = BD_Open_Helper(appContext()).readableDatabase
         assertTrue(db.isOpen)
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirPaciente() {
+        val db = getWritableDatabase()
+
+        inserirPacientes(db, Pacientes("Drama","18-12-1985",180))
+
         db.close()
     }
 
