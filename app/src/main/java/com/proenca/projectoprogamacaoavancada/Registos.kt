@@ -2,7 +2,7 @@ package com.proenca.projectoprogamacaoavancada
 
 import android.content.ContentValues
 
-data class Registos(var data_reg: Long,
+data class Registos(var data_reg:String,
                     var glicemia: Long,
                     var insulina: Long,
                     var id_reg:Long=-1) {
@@ -14,5 +14,4 @@ data class Registos(var data_reg: Long,
         valores.put(TabelaRegistos.INSULINA,insulina)
         return valores
     }
-
 }
