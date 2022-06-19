@@ -16,8 +16,7 @@ import org.junit.Before
  */
 @RunWith(AndroidJUnit4::class)
 class InstrumentedTest {
-    @Test
-    fun appContext() = InstrumentationRegistry.getInstrumentation().targetContext
+    private fun appContext() = InstrumentationRegistry.getInstrumentation().targetContext
 
     @Before
 
