@@ -28,6 +28,12 @@ class InstrumentedTest {
         pacientes.id = TabelaPacientes(db).insert(pacientes.toContentValues())
         assertNotEquals(-1, pacientes.id)
     }
+
+    private fun inserirAlimentos(db: SQLiteDatabase, alimentos: Alimentos) {
+        alimentos.id = TabelaAlimentos(db).insert(alimentos.toContentValues())
+        assertNotEquals(-1, alimentos.id)
+    }
+
     @Before
 
     fun apagarBD(){
@@ -46,9 +52,17 @@ class InstrumentedTest {
     fun consegueInserirPaciente() {
         val db = getWritableDatabase()
 
-        inserirPacientes(db, Pacientes("Drama","18-12-1985",180))
+        inserirPacientes(db, Pacientes("Paulo Proença","18-12-1985",180))
+        inserirPacientes(db, Pacientes("Paulo Jorge","18-12-1985",180))
 
         db.close()
     }
 
+    @Test
+
+    fun consegueInserirAlimentos() {
+        val db = getWritableDatabase()
+        inserirAlimentos(db, Alimentos("Pão",133))
+        db.close()
+    }
 }

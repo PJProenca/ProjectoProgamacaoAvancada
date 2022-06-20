@@ -3,8 +3,8 @@ package com.proenca.projectoprogamacaoavancada
 import android.content.ContentValues
 
 data class Alimentos(var nome: String,
-                     var hidratos : String,
-                     var id: Long=-1) {
+                     var hidratos : Long,
+                     var id : Long = -1) {
 
     fun toContentValues(): ContentValues{
         var valores=ContentValues()
