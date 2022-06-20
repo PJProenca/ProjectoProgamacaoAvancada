@@ -5,13 +5,14 @@ import android.provider.BaseColumns
 
 class TabelaAlimento_Registo(db: SQLiteDatabase):TabelasBD(db,NOME) {
 
-    override fun cria(){
+     override fun cria(){
+
         db.execSQL("CREATE TABLE $NOME ( $REG_ID_REGISTO INTEGER NOT NULL," +
                 "$REG_ID_PACIENTE INTEGER NOT NULL,"+
-                "$REG_ID_ALIMENTO INTEGER NOT NULL,"+
+               "$REG_ID_ALIMENTO INTEGER NOT NULL,"+
                 " FOREIGN KEY ($REG_ID_REGISTO) REFERENCES ${TabelaRegistos.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT," +
-                "FOREIGN KEY ($REG_ID_PACIENTE) REFERENCES ${TabelaPacientes.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT," +
-                "FOREIGN KEY ($REG_ID_ALIMENTO) REFERENCES ${TabelaAlimentos.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+               "FOREIGN KEY ($REG_ID_PACIENTE) REFERENCES ${TabelaPacientes.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT," +
+               "FOREIGN KEY ($REG_ID_ALIMENTO) REFERENCES ${TabelaAlimentos.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
 
     companion object{

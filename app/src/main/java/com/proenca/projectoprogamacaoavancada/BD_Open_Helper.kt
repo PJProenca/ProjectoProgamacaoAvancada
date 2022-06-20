@@ -9,6 +9,8 @@ class BD_Open_Helper(context : Context) : SQLiteOpenHelper(context,NOME,null,VER
         requireNotNull(db)
         TabelaPacientes(db).cria()
         TabelaAlimentos(db).cria()
+        TabelaRegistos(db).cria()
+        TabelaAlimento_Registo(db).cria()
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

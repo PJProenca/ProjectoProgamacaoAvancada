@@ -4,7 +4,7 @@ import android.content.ContentValues
 
 data class Alimentos(var nome: String,
                      var hidratos : Long,
-                     var id : Long = -1) {
+                     var id: Long=-1) {
 
     fun toContentValues(): ContentValues{
         var valores=ContentValues()
