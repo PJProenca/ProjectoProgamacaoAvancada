@@ -1,6 +1,7 @@
 package com.proenca.projectoprogamacaoavancada
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -93,8 +94,20 @@ class InstrumentedTest {
         val alimento= Alimentos("Bolacha",175)
         inserirAlimentos(db,alimento)
         val registo = Registos("20/06/2022",175,17,79.5,paciente.id)
+    }
 
+    @Test
 
+    fun consegueAlterarPaciente(){
+        val db = getWritableDatabase()
+        val paciente = Pacientes("PJ","15/6/1991",185)
+        inserirPacientes(db,paciente)
 
+        paciente.nome="Paulo"
+        val alterarPaciente=TabelaPacientes(db).update(paciente.toContentValues(),
+            "${BaseColumns._ID}=?",
+                arrayOf("${paciente.id}"))
+        assertEquals(1,alterarPaciente)
+        db.close()
     }
 }
