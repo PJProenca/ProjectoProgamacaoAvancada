@@ -84,17 +84,6 @@ class InstrumentedTest {
         db.close()
     }
 
-    @Test
-
-    fun consegueInserirAlimentosReg(){
-        val db = getWritableDatabase()
-
-        val paciente = Pacientes("PJ","15/6/1991",185)
-        inserirPacientes(db,paciente)
-        val alimento= Alimentos("Bolacha",175)
-        inserirAlimentos(db,alimento)
-        val registo = Registos("20/06/2022",175,17,79.5,paciente.id)
-    }
 
     @Test
 
