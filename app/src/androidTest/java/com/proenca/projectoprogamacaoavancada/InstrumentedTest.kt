@@ -110,4 +110,19 @@ class InstrumentedTest {
         assertEquals(1,alterarPaciente)
         db.close()
     }
+    @Test
+
+    fun consegueAlterarAlimentos(){
+        val db = getWritableDatabase()
+        val alimento = Alimentos("Bolacha", 145)
+        inserirAlimentos(db,alimento)
+
+        alimento.nome="Arroz"
+        val alterarAlimento=TabelaAlimentos(db).update(alimento.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${alimento.id}"))
+        assertEquals(1,alterarAlimento)
+        db.close()
+    }
+
 }
