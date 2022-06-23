@@ -12,7 +12,7 @@ data class Registos(var data_reg:String,
                     var id:Long=-1) {
 
     fun toContentValues(): ContentValues{
-        var valores = ContentValues()
+        val valores = ContentValues()
         valores.put(TabelaRegistos.DATA_REG,data_reg)
         valores.put(TabelaRegistos.GLICEMIA,glicemia)
         valores.put(TabelaRegistos.INSULINA,insulina)

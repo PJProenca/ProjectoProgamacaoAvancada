@@ -227,4 +227,32 @@ class InstrumentedTest {
 
         db.close()
     }
+
+    @Test
+    fun consegueLerRegistos() {
+        val db = getWritableDatabase()
+
+        val paciente = Pacientes("Paulo J. M.","18-12-1985",180)
+        inserirPacientes(db,paciente)
+
+        val registo = Registos("23/06/2022",155,11,57.6,paciente.id)
+        inserirRegisto(db, registo)
+
+        val cursor = TabelaRegistos(db).query(
+            TabelaRegistos.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${registo.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val registoBD = Registos.fromCursor(cursor)
+        assertEquals(registo, registoBD)
+
+        db.close()
+    }
 }

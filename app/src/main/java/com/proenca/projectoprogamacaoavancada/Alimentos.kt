@@ -9,7 +9,7 @@ data class Alimentos(var nome: String,
                      var id: Long=-1) {
 
     fun toContentValues(): ContentValues{
-        var valores=ContentValues()
+        val valores=ContentValues()
         valores.put(TabelaAlimentos.C_NOME,nome)
         valores.put(TabelaAlimentos.C_VALOR,hidratos)
         return valores
