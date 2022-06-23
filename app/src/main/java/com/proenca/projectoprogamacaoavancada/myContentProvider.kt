@@ -6,8 +6,12 @@ import android.database.Cursor
 import android.net.Uri
 
 class myContentProvider: ContentProvider() {
+
+    var dbOpenHelper : BD_Open_Helper? = null
+
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        dbOpenHelper= BD_Open_Helper(context)
+        return true
     }
 
     override fun query(
