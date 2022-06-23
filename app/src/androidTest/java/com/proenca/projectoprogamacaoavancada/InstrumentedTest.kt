@@ -202,4 +202,29 @@ class InstrumentedTest {
         db.close()
     }
 
+
+    @Test
+    fun consegueLerAlimentos() {
+        val db = getWritableDatabase()
+
+        val alimento = Alimentos("Massa",75)
+        inserirAlimentos(db, alimento)
+
+        val cursor = TabelaAlimentos(db).query(
+            TabelaAlimentos.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${alimento.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val alimentosBD = Alimentos.fromCursor(cursor)
+        assertEquals(alimento, alimentosBD)
+
+        db.close()
+    }
 }

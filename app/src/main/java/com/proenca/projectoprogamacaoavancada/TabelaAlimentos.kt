@@ -13,5 +13,9 @@ class TabelaAlimentos(db:SQLiteDatabase) : TabelasBD(db,NOME) {
         const val NOME = "Alimentos"
         const val C_NOME = "Alimento"
         const val C_VALOR = "Valor_Hidratos"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID,
+            TabelaAlimentos.C_NOME,
+            TabelaAlimentos.C_VALOR)
     }
 }
