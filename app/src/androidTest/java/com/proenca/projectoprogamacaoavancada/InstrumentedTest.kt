@@ -177,4 +177,29 @@ class InstrumentedTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerPacientes() {
+        val db = getWritableDatabase()
+
+        val paciente = Pacientes("Paulo Proença","15/13/1989",177)
+        inserirPacientes(db, paciente)
+
+        val cursor = TabelaPacientes(db).query(
+            TabelaPacientes.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${paciente.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val pacienteBD = Pacientes.fromCursor(cursor)
+        assertEquals(paciente, pacienteBD)
+
+        db.close()
+    }
+
 }
