@@ -159,6 +159,22 @@ class InstrumentedTest {
 
         db.close()
     }
-    
+
+    @Test
+    fun consegueEliminarAlimentos() {
+        val db = getWritableDatabase()
+        val alimento = Alimentos("Feijão",180)
+        inserirAlimentos(db,alimento)
+
+
+        val registosEliminados = TabelaAlimentos(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${alimento.id}")
+        )
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
 
 }
