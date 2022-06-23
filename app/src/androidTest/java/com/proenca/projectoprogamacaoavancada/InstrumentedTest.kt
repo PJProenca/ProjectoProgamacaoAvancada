@@ -142,4 +142,23 @@ class InstrumentedTest {
 
         db.close()
     }
+    @Test
+    fun consegueEliminarRegisto() {
+        val db = getWritableDatabase()
+        val paciente = Pacientes("Paulo J. M.","18-12-1985",180)
+        inserirPacientes(db,paciente)
+        val registo = Registos("23/06/2022",185,15,57.0,paciente.id)
+        inserirRegisto(db, registo)
+
+        val registosEliminados = TabelaRegistos(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${registo.id}")
+        )
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+    
+
 }
