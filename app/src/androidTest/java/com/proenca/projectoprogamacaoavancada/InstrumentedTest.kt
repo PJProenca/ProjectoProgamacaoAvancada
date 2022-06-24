@@ -39,6 +39,9 @@ class InstrumentedTest {
         registo.id = TabelaRegistos(db).insert(registo.toContentValues())
         assertNotEquals(-1,registo.id)
     }
+    private fun inserirALimentoRegisto(db: SQLiteDatabase,alimentoReg:Alimento_Registo){
+        TabelaAlimento_Registo(db).insert(alimentoReg.toContentValues())
+    }
 
     @Before
 
@@ -83,8 +86,20 @@ class InstrumentedTest {
         inserirRegisto(db, Registos("20/06/2022",145,15,75.5,paciente.id))
         db.close()
     }
+    @Test
+    fun consegueInserirAlim_Reg(){
+        val db = getWritableDatabase()
+        val paciente = Pacientes("Paulo J. M.","18-12-1985",180)
+        inserirPacientes(db,paciente)
+        val alimento = Alimentos("Bolacha", 145)
+        inserirAlimentos(db,alimento)
+        val registo = Registos("23/06/2022",185,15,57.0,paciente.id)
+        inserirRegisto(db, registo)
+        val alim_reg = Alimento_Registo(registo.id,paciente.id,alimento.id)
 
-
+        inserirALimentoRegisto(db,alim_reg)
+        db.close()
+    }
     @Test
 
     fun consegueAlterarPaciente(){
