@@ -278,10 +278,10 @@ class InstrumentedTest {
 
         inserirALimentoRegisto(db,alim_reg)
 
-        val cursor = TabelaRegistos(db).query(
-            TabelaRegistos.TODAS_COLUNAS,
+        val cursor = TabelaAlimento_Registo(db).query(
+            TabelaAlimento_Registo.TODAS_COLUNAS,
             "${alim_reg.id_reg}=?",
-            arrayOf("${alim_reg.id_reg},${alim_reg.id_paciente},${alim_reg.id_alimento}"),
+            arrayOf("${alim_reg.id_reg} ${alim_reg.id_paciente}"),
             null,
             null,
             null
