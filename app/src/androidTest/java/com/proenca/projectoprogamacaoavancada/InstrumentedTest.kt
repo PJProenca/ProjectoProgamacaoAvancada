@@ -259,4 +259,40 @@ class InstrumentedTest {
 
         db.close()
     }
+
+    @Test
+
+    fun consegueLerAlimentosRegistos() {
+        val db = getWritableDatabase()
+
+        val paciente = Pacientes("Paulo J. M.","18-12-1985",180)
+        inserirPacientes(db,paciente)
+
+        val registo = Registos("23/06/2022",155,11,57.6,paciente.id)
+        inserirRegisto(db, registo)
+
+        val alimento = Alimentos("Massa",75)
+        inserirAlimentos(db, alimento)
+
+        val alim_reg = Alimento_Registo(registo.id,paciente.id,alimento.id)
+
+        inserirALimentoRegisto(db,alim_reg)
+
+        val cursor = TabelaRegistos(db).query(
+            TabelaRegistos.TODAS_COLUNAS,
+            "${alim_reg.id_reg}=?",
+            arrayOf("${alim_reg.id_reg},${alim_reg.id_paciente},${alim_reg.id_alimento}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val alimentoRegistoBD = Alimento_Registo.fromCursor(cursor)
+        assertEquals(alim_reg, alimentoRegistoBD)
+
+        db.close()
+    }
 }

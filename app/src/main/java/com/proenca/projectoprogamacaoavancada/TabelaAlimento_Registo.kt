@@ -21,5 +21,11 @@ class TabelaAlimento_Registo(db: SQLiteDatabase):TabelasBD(db,NOME) {
         const val REG_ID_ALIMENTO="Registo_Id_Alimento"
         const val REG_ID_PACIENTE="Registo_Id_Paciente"
         const val REG_ID_REGISTO="Registo_Id_Registo"
+
+        val TODAS_COLUNAS = arrayOf(TabelaAlimento_Registo.REG_ID_ALIMENTO,
+                                    TabelaAlimento_Registo.REG_ID_PACIENTE,
+                                    TabelaAlimento_Registo.REG_ID_ALIMENTO)
+
+
     }
 }
