@@ -25,9 +25,17 @@ class myContentProvider: ContentProvider() {
         TODO("Not yet implemented")
     }
 
-    override fun getType(p0: Uri): String? {
-        TODO("Not yet implemented")
-    }
+    override fun getType(uri: Uri): String? =
+        when(getUriMatcher().match(uri)){
+            URI_PACIENTES ->"$REGISTOS_MULTIPLOS/${TabelaPacientes.NOME}"
+            URI_ALIMENTOS ->"$REGISTOS_MULTIPLOS/${TabelaAlimentos.NOME}"
+            URI_REGISTOS ->"$REGISTOS_MULTIPLOS/${TabelaRegistos.NOME}"
+            URI_PACIENTE_ESP ->"$REGISTO_UNICO/${TabelaPacientes.NOME}"
+            URI_ALIMENTOS_ESP ->"$REGISTO_UNICO/${TabelaAlimentos.NOME}"
+            URI_REGISTOS_ESP ->"$REGISTO_UNICO/${TabelaRegistos.NOME}"
+            else -> null
+        }
+
 
     override fun insert(p0: Uri, p1: ContentValues?): Uri? {
         TODO("Not yet implemented")
@@ -49,6 +57,10 @@ class myContentProvider: ContentProvider() {
         const val  URI_ALIMENTOS_ESP = 201
         const val URI_REGISTOS = 300
         const val URI_REGISTOS_ESP = 301
+
+        const val REGISTO_UNICO = "vnd.android.cursor.item"
+        const val REGISTOS_MULTIPLOS = "vnd.android.cursor.dir"
+
 
         fun getUriMatcher(): UriMatcher{
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
