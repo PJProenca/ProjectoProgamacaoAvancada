@@ -61,9 +61,12 @@ class myContentProvider: ContentProvider() {
             URI_PACIENTES-> TabelaPacientes(db).insert(values)
             URI_ALIMENTOS-> TabelaAlimentos(db).insert(values)
             URI_REGISTOS-> TabelaRegistos(db).insert(values)
-
+            URI_ALIM_REG -> TabelaAlimento_Registo(db).insert(values)
             else->null
         }
+        if (id == 1L) return null
+
+        return Uri.withAppendedPath(uri,"$id")
     }
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
