@@ -79,14 +79,26 @@ class myContentProvider: ContentProvider() {
             URI_PACIENTE_ESP -> TabelaPacientes(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
             URI_ALIMENTOS_ESP -> TabelaAlimentos(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
             URI_REGISTOS_ESP -> TabelaRegistos(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
-            URI_ALIM_REG_ESP -> TabelaAlimento_Registo(db).delete(TabelaAlimento_Registo.REG_ID_REGISTO, arrayOf("$id"))
+            URI_ALIM_REG_ESP -> TabelaAlimento_Registo(db).delete("${TabelaAlimento_Registo.REG_ID_REGISTO}=?", arrayOf("$id"))
 
             else->0
         }
     }
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArg: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        requireNotNull(values)
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        return when(getUriMatcher().match(uri)){
+
+            URI_PACIENTE_ESP -> TabelaPacientes(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_ALIMENTOS_ESP -> TabelaAlimentos(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_REGISTOS_ESP -> TabelaRegistos(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))                    
+
+            else -> 0
+        }
     }
 
     companion object{
