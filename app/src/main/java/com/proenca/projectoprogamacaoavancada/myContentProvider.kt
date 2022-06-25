@@ -69,8 +69,20 @@ class myContentProvider: ContentProvider() {
         return Uri.withAppendedPath(uri,"$id")
     }
 
-    override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
-        TODO("Not yet implemented")
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        return when(getUriMatcher().match(uri)){
+
+            URI_PACIENTE_ESP -> TabelaPacientes(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_ALIMENTOS_ESP -> TabelaAlimentos(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_REGISTOS_ESP -> TabelaRegistos(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_ALIM_REG_ESP -> TabelaAlimento_Registo(db).delete(TabelaAlimento_Registo.REG_ID_REGISTO, arrayOf("$id"))
+
+            else->0
+        }
     }
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArg: Array<out String>?): Int {
