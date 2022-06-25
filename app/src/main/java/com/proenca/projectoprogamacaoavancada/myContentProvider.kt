@@ -95,7 +95,7 @@ class myContentProvider: ContentProvider() {
 
             URI_PACIENTE_ESP -> TabelaPacientes(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))
             URI_ALIMENTOS_ESP -> TabelaAlimentos(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))
-            URI_REGISTOS_ESP -> TabelaRegistos(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))                    
+            URI_REGISTOS_ESP -> TabelaRegistos(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))
 
             else -> 0
         }
