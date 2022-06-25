@@ -53,8 +53,17 @@ class myContentProvider: ContentProvider() {
         }
 
 
-    override fun insert(p0: Uri, p1: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+        val db = dbOpenHelper!!.writableDatabase
+        requireNotNull(values)
+        val id = when(getUriMatcher().match(uri)){
+
+            URI_PACIENTES-> TabelaPacientes(db).insert(values)
+            URI_ALIMENTOS-> TabelaAlimentos(db).insert(values)
+            URI_REGISTOS-> TabelaRegistos(db).insert(values)
+
+            else->null
+        }
     }
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
@@ -69,10 +78,12 @@ class myContentProvider: ContentProvider() {
         const val AUTORIDADE = "com.proenca.projectoprogamacaoavancada"
         const val URI_PACIENTES = 100
         const val URI_PACIENTE_ESP = 101
-        const val  URI_ALIMENTOS = 200
-        const val  URI_ALIMENTOS_ESP = 201
+        const val URI_ALIMENTOS = 200
+        const val URI_ALIMENTOS_ESP = 201
         const val URI_REGISTOS = 300
         const val URI_REGISTOS_ESP = 301
+        const val URI_ALIM_REG = 400
+        const val URI_ALIM_REG_ESP = 401
 
         const val REGISTO_UNICO = "vnd.android.cursor.item"
         const val REGISTOS_MULTIPLOS = "vnd.android.cursor.dir"
@@ -87,6 +98,8 @@ class myContentProvider: ContentProvider() {
             uriMatcher.addURI(AUTORIDADE,"${TabelaAlimentos.NOME}/#", URI_ALIMENTOS_ESP)
             uriMatcher.addURI(AUTORIDADE,TabelaRegistos.NOME, URI_REGISTOS)
             uriMatcher.addURI(AUTORIDADE,"${TabelaRegistos.NOME}/#", URI_REGISTOS_ESP)
+            uriMatcher.addURI(AUTORIDADE,TabelaAlimento_Registo.NOME, URI_ALIM_REG)
+            uriMatcher.addURI(AUTORIDADE,"${TabelaAlimento_Registo.NOME}/#", URI_ALIM_REG_ESP)
 
             return uriMatcher
 
