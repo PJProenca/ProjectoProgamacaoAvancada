@@ -15,4 +15,14 @@
     <string name="butao_adicionar_paciente">Novo Paciente</string>
     <string name="butao_editar_paciente">Editar Paciente</string>
     <string name="butao_apagar_paciente">Apagar Paciente</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="PacienteApagar">Qual o Paciente a apagar :</string>
+    <string name="butaoApagar">Apagar</string>
+    <string name="NomePaciente"> Nome </string>
+    <string name="PacienteNome">Nome</string>
+    <string name="dataNascPaciente">Data de Nascimento</string>
+    <string name="dataNascPacinte">Data de Nascimento</string>
+    <string name="AlturaPaciente">Altura</string>
+    <string name="ApagarPacienteFrag">Apagar Pacientes</string>
 </resources>

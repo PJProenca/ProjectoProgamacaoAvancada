@@ -32,8 +32,8 @@ class PacienteOpcoesFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonAdicionaPaciente.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding.buttonApagaraPaciente.setOnClickListener {
+            findNavController().navigate(R.id.action_PacienteOpcoesFrag_to_apagarPacienteFrag)
         }
     }
 

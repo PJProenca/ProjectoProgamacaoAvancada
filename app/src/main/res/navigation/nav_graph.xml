@@ -24,5 +24,14 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/MenuPrincipalFrag" />
+        <action
+            android:id="@+id/action_PacienteOpcoesFrag_to_apagarPacienteFrag"
+            app:destination="@id/apagarPacienteFrag"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
+    <fragment
+        android:id="@+id/apagarPacienteFrag"
+        android:name="com.proenca.projectoprogamacaoavancada.ApagarPacienteFrag"
+        android:label="@string/ApagarPacienteFrag"
+        tools:layout="@layout/fragment_apagar_paciente" />
 </navigation>
