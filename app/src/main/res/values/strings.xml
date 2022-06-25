@@ -12,4 +12,7 @@
     <string name="Butao_pacientes">PACIENTES</string>
     <string name="Butao_alimentos">Alimentos</string>
     <string name="Butao_registos">Registos</string>
+    <string name="butao_adicionar_paciente">Novo Paciente</string>
+    <string name="butao_editar_paciente">Editar Paciente</string>
+    <string name="butao_apagar_paciente">Apagar Paciente</string>
 </resources>
