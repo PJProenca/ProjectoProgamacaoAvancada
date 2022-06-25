@@ -4,7 +4,6 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
-import android.media.projection.MediaProjection
 import android.net.Uri
 import android.provider.BaseColumns
 
@@ -27,17 +26,17 @@ class myContentProvider: ContentProvider() {
         val db = dbOpenHelper!!.readableDatabase
 
         val colunas = projection as Array<String>
-        val selArgs = selectionArgs as Array<String>
+        val selArgs = selectionArgs as Array<String>?
 
         val id = uri.lastPathSegment
 
         return when (getUriMatcher().match(uri)){
             URI_PACIENTES->TabelaPacientes(db).query(colunas,selection,selArgs,null,null,sortOrder)
-            URI_PACIENTE_ESP -> TabelaPacientes(db).query(colunas,"${BaseColumns._ID}", arrayOf("$id"),null,null,null)
+            URI_PACIENTE_ESP -> TabelaPacientes(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
             URI_ALIMENTOS -> TabelaAlimentos(db).query(colunas,selection,selArgs,null,null,sortOrder)
-            URI_ALIMENTOS_ESP -> TabelaAlimentos(db).query(colunas,"${BaseColumns._ID}", arrayOf("$id"),null,null,null)
+            URI_ALIMENTOS_ESP -> TabelaAlimentos(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
             URI_REGISTOS -> TabelaRegistos(db).query(colunas,selection,selArgs,null,null,sortOrder)
-            URI_REGISTOS_ESP -> TabelaRegistos(db).query(colunas,"${BaseColumns._ID}", arrayOf("$id"),null,null,null)
+            URI_REGISTOS_ESP -> TabelaRegistos(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
             else -> null
         }
     }
