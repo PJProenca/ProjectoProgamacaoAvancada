@@ -15,4 +15,5 @@
     <string name="butao_adicionar_paciente">Novo Paciente</string>
     <string name="butao_editar_paciente">Editar Paciente</string>
     <string name="butao_apagar_paciente">Apagar Paciente</string>
+    <string name="SelecionarPacienteText">Selecione o Paciente</string>
 </resources>

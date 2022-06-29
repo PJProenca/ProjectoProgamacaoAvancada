@@ -1,11 +1,10 @@
 package com.proenca.projectoprogamacaoavancada
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentPacientesOpcoesBinding
 
 /**
@@ -32,9 +31,9 @@ class PacienteOpcoesFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonAdicionaPaciente.setOnClickListener {
+   /*     binding.buttonAdicionaPaciente.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
+        }*/
     }
 
     override fun onDestroyView() {

@@ -6,40 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".PacienteOpcoesFrag">
 
-    <Button
-        android:id="@+id/button_adiciona_paciente"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/spinnerPacientes"
+        android:layout_width="306dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
-        android:text="@string/butao_adicionar_paciente"
-        app:backgroundTint="#009196"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SlectPecienteTextView" />
+
+    <TextView
+        android:id="@+id/SlectPecienteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/SelecionarPacienteText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="408dp"
+        android:layout_height="581dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/button_editar_paciente"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/butao_editar_paciente"
-        app:backgroundTint="#009196"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_adiciona_paciente"
-        tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/button_apagara_paciente"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/butao_apagar_paciente"
-        app:backgroundTint="#009196"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_editar_paciente"
-        tools:ignore="TextContrastCheck" />
-
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPacientes" />
 </androidx.constraintlayout.widget.ConstraintLayout>
