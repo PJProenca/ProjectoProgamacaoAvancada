@@ -2,14 +2,12 @@ package com.proenca.projectoprogamacaoavancada
 
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
-import org.junit.Test
-import org.junit.runner.RunWith
-
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -62,6 +60,8 @@ class InstrumentedTest {
         val db = getWritableDatabase()
 
         inserirPacientes(db, Pacientes("Paulo Proença","18-12-1985",180))
+        inserirPacientes(db, Pacientes("Paulo Jorge","18-12-1985",180))
+        inserirPacientes(db, Pacientes("Joaquim do anzois","18-12-1985",180))
 
 
         db.close()

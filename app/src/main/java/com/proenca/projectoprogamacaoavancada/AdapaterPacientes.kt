@@ -3,6 +3,7 @@ package com.proenca.projectoprogamacaoavancada
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter<AdapaterPacientes.ViewHolderPacientes>() {
@@ -17,7 +18,18 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
     }
 
     class ViewHolderPacientes(itemPacientes: View) : RecyclerView.ViewHolder(itemPacientes) {
+            val textViewNome = itemPacientes.findViewById<TextView>(R.id.textViewNomePaciente)
+            val textViewDataNasc = itemPacientes.findViewById<TextView>(R.id.textViewDataNasc)
+            val textViewAltura = itemPacientes.findViewById<TextView>(R.id.textViewAltura)
 
+            var paciente : Pacientes? = null
+            get()= field
+            set(value) {
+                field=value
+                textViewNome.text = paciente?.nome?: ""
+                textViewDataNasc.text = paciente?.dataNasc?: ""
+                textViewAltura.text = paciente?.altura.toString()
+            }
     }
 
     override fun onCreateViewHolder(
@@ -31,7 +43,8 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
 
 
     override fun onBindViewHolder(holder: ViewHolderPacientes, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.paciente=Pacientes.fromCursor(cursor!!)
     }
 
     override fun getItemCount(): Int {
