@@ -24,6 +24,8 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="48dp"
         android:text="@string/SelecionarPacienteText"
+        android:textColor="#009196"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
