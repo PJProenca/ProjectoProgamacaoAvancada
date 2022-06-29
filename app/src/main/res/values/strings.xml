@@ -16,4 +16,7 @@
     <string name="butao_editar_paciente">Editar Paciente</string>
     <string name="butao_apagar_paciente">Apagar Paciente</string>
     <string name="SelecionarPacienteText">Selecione o Paciente</string>
+    <string name="DataNasc">Data de Nascimento</string>
+    <string name="NomePaciente">Nome</string>
+    <string name="PacienteAltura">Altura</string>
 </resources>
