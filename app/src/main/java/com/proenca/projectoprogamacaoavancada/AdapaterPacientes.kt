@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapaterPacientes : RecyclerView.Adapter<AdapaterPacientes.ViewHolderPacientes>() {
+class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter<AdapaterPacientes.ViewHolderPacientes>() {
 
     var cursor:Cursor? =null
     get() = field
@@ -24,7 +24,8 @@ class AdapaterPacientes : RecyclerView.Adapter<AdapaterPacientes.ViewHolderPacie
         parent: ViewGroup,
         viewType: Int
     ): ViewHolderPacientes {
-        TODO("Not yet implemented")
+        val itemPacientes =fragment.layoutInflater.inflate(R.layout.paciente_item,parent,false)
+        return ViewHolderPacientes(itemPacientes)
     }
 
 

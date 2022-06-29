@@ -38,7 +38,7 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_PACIENTES,null,this)
-        adapterPacientes = AdapaterPacientes()
+        adapterPacientes = AdapaterPacientes(this)
         binding.recyclerViewPacientes.adapter = adapterPacientes
         binding.recyclerViewPacientes.layoutManager =LinearLayoutManager(requireContext())
     }
