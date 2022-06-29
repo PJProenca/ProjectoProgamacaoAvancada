@@ -9,7 +9,7 @@
     <Spinner
         android:id="@+id/spinnerPacientes"
         android:layout_width="306dp"
-        android:layout_height="22dp"
+        android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
@@ -30,6 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPacientes"
         android:layout_width="408dp"
         android:layout_height="581dp"
         android:layout_marginTop="60dp"
