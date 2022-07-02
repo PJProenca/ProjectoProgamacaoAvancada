@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentPacientesOpcoesBinding
+
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -19,6 +21,7 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     private var _binding: FragmentPacientesOpcoesBinding? = null
     private var adapterPacientes :AdapaterPacientes? =null
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,7 +43,7 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         LoaderManager.getInstance(this).initLoader(ID_LOADER_PACIENTES,null,this)
         adapterPacientes = AdapaterPacientes(this)
         binding.recyclerViewPacientes.adapter = adapterPacientes
-        binding.recyclerViewPacientes.layoutManager =LinearLayoutManager(requireContext())
+        binding.recyclerViewPacientes.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDestroyView() {
@@ -60,10 +63,16 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         adapterPacientes!!.cursor = data
+        binding.spinnerPacientes.adapter=SimpleCursorAdapter(requireContext(),
+        android.R.layout.simple_list_item_1,
+        data, arrayOf(TabelaPacientes.C_NOME),
+        intArrayOf(android.R.id.text1),0
+        )
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterPacientes!!.cursor = null
+        //adapterPacientes!!.cursor = null
+        binding.spinnerPacientes.adapter=null
     }
 
     companion object{

@@ -64,7 +64,7 @@ class InstrumentedTest {
         inserirPacientes(db, Pacientes("Joaquim do anzois","18-12-1985",180))
 
 
-        db.close()
+        //db.close()
     }
 
     @Test

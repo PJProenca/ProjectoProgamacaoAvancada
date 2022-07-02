@@ -8,16 +8,17 @@
 
     <Spinner
         android:id="@+id/spinnerPacientes"
-        android:layout_width="306dp"
+        android:layout_width="344dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SlectPecienteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/SelectPecienteTextView"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/SlectPecienteTextView"
+        android:id="@+id/SelectPecienteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"

@@ -115,7 +115,7 @@ class myContentProvider: ContentProvider() {
         const val REGISTO_UNICO = "vnd.android.cursor.item"
         const val REGISTOS_MULTIPLOS = "vnd.android.cursor.dir"
 
-        val ENDERCO_BASE =Uri.parse("content//$AUTORIDADE")
+        val ENDERCO_BASE =Uri.parse("content://$AUTORIDADE")
         val ENDERECO_PACIENTES = Uri.withAppendedPath(ENDERCO_BASE,TabelaPacientes.NOME)
         val ENDERECO_ALIMENTOS = Uri.withAppendedPath(ENDERCO_BASE,TabelaAlimentos.NOME)
         val ENDERECO_REGISTOS = Uri.withAppendedPath(ENDERCO_BASE,TabelaRegistos.NOME)
