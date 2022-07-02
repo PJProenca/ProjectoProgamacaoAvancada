@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/PacienteOpcoesFrag" />
+        <action
+            android:id="@+id/action_MenuPrincipalFrag_to_adicionarPacientes"
+            app:destination="@id/adicionarPacientes" />
     </fragment>
     <fragment
         android:id="@+id/PacienteOpcoesFrag"
@@ -23,5 +26,17 @@
         <action
             android:id="@+id/action_PacienteOpcoesFrag_to_MenuPrincipalFrag"
             app:destination="@id/MenuPrincipalFrag" />
+        <action
+            android:id="@+id/action_PacienteOpcoesFrag_to_adicionarPacientes"
+            app:destination="@id/adicionarPacientes" />
+    </fragment>
+    <fragment
+        android:id="@+id/adicionarPacientes"
+        android:name="com.proenca.projectoprogamacaoavancada.AdicionarPacientes"
+        android:label="fragment_adicionar_pacientes"
+        tools:layout="@layout/fragment_adicionar_pacientes" >
+        <action
+            android:id="@+id/action_adicionarPacientes_to_PacienteOpcoesFrag"
+            app:destination="@id/PacienteOpcoesFrag" />
     </fragment>
 </navigation>

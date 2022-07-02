@@ -1,10 +1,10 @@
 package com.proenca.projectoprogamacaoavancada
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentMenuPrincipalBinding
 
@@ -34,6 +34,9 @@ class MenuPrincipalFrag : Fragment() {
 
         binding.buttonPaciente.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+        binding.buttonAlimentos.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuPrincipalFrag_to_adicionarPacientes)
         }
     }
 
