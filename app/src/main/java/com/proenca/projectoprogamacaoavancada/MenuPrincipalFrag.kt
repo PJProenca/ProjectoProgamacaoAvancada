@@ -38,6 +38,8 @@ class MenuPrincipalFrag : Fragment() {
         binding.buttonAlimentos.setOnClickListener {
             findNavController().navigate(R.id.action_MenuPrincipalFrag_to_adicionarPacientes)
         }
+
+        (activity as MainActivity).itemAtual = R.menu.menu_main
     }
 
     override fun onDestroyView() {

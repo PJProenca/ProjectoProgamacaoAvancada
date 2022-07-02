@@ -44,6 +44,8 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         adapterPacientes = AdapaterPacientes(this)
         binding.recyclerViewPacientes.adapter = adapterPacientes
         binding.recyclerViewPacientes.layoutManager = LinearLayoutManager(requireContext())
+        (activity as MainActivity).itemAtual = R.menu.menu_main
+
     }
 
     override fun onDestroyView() {

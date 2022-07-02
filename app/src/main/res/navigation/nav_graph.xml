@@ -24,17 +24,17 @@
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_pacientes_opcoes">
         <action
-            android:id="@+id/action_PacienteOpcoesFrag_to_MenuPrincipalFrag"
-            app:destination="@id/MenuPrincipalFrag" />
-        <action
             android:id="@+id/action_PacienteOpcoesFrag_to_adicionarPacientes"
             app:destination="@id/adicionarPacientes" />
+        <action
+            android:id="@+id/action_PacienteOpcoesFrag_to_MenuPrincipalFrag"
+            app:destination="@id/MenuPrincipalFrag" />
     </fragment>
     <fragment
         android:id="@+id/adicionarPacientes"
         android:name="com.proenca.projectoprogamacaoavancada.AdicionarPacientes"
-        android:label="fragment_adicionar_pacientes"
-        tools:layout="@layout/fragment_adicionar_pacientes" >
+        android:label="@string/adicionarPaciente"
+        tools:layout="@layout/fragment_adicionar_pacientes">
         <action
             android:id="@+id/action_adicionarPacientes_to_PacienteOpcoesFrag"
             app:destination="@id/PacienteOpcoesFrag" />
