@@ -20,9 +20,8 @@
         android:name="com.proenca.projectoprogamacaoavancada.PacienteOpcoesFrag"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_pacientes_opcoes">
-
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_PacienteOpcoesFrag_to_MenuPrincipalFrag"
             app:destination="@id/MenuPrincipalFrag" />
     </fragment>
 </navigation>

@@ -19,4 +19,7 @@
     <string name="DataNasc">Data de Nascimento</string>
     <string name="NomePaciente">Nome</string>
     <string name="PacienteAltura">Altura</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="alterar">Alterar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>
