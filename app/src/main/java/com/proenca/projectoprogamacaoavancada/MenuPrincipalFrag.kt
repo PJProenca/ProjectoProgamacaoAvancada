@@ -2,6 +2,7 @@ package com.proenca.projectoprogamacaoavancada
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -39,8 +40,19 @@ class MenuPrincipalFrag : Fragment() {
             findNavController().navigate(R.id.action_MenuPrincipalFrag_to_adicionarPacientes)
         }
 
-        (activity as MainActivity).itemAtual = R.menu.menu_main
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.itemAtual = R.menu.menu_main
+
     }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean{
+        return when(item.itemId){
+            R.id.action_settings -> true
+            else -> false
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -3,6 +3,7 @@ package com.proenca.projectoprogamacaoavancada
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentPacientesOpcoesBinding
 
@@ -44,8 +46,22 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         adapterPacientes = AdapaterPacientes(this)
         binding.recyclerViewPacientes.adapter = adapterPacientes
         binding.recyclerViewPacientes.layoutManager = LinearLayoutManager(requireContext())
-        (activity as MainActivity).itemAtual = R.menu.menu_main
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.itemAtual = R.menu.menu_barra
 
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean{
+        return when(item.itemId){
+            R.id.action_add -> {
+                findNavController().navigate(R.id.action_PacienteOpcoesFrag_to_adicionarPacientes)
+                return true
+            }
+            R.id.action_edit ->true
+            R.id.action_delete ->true
+            else -> false
+        }
     }
 
     override fun onDestroyView() {
