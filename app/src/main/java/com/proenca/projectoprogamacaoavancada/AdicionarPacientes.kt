@@ -1,10 +1,13 @@
 package com.proenca.projectoprogamacaoavancada
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -13,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ApagarPacienteFrag.newInstance] factory method to
+ * Use the [AdicionarPacientes.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ApagarPacienteFrag : Fragment() {
+class AdicionarPacientes : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,8 +37,28 @@ class ApagarPacienteFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_apagar_paciente, container, false)
+        return inflater.inflate(R.layout.fragment_adicionar_pacientes, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.itemAtual = R.menu.menu_guardar
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_save -> true
+            R.id.action_cancel -> {
+                findNavController().navigate(R.id.action_adicionarPacientes_to_PacienteOpcoesFrag)
+                true
+            }
+            else -> false
+        }
+    }
+
 
     companion object {
         /**
@@ -44,12 +67,12 @@ class ApagarPacienteFrag : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ApagarPacienteFrag.
+         * @return A new instance of fragment AdicionarPacientes.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ApagarPacienteFrag().apply {
+            AdicionarPacientes().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
