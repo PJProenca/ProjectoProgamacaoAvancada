@@ -69,7 +69,10 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
                 return true
             }
             R.id.action_edit ->true
-            R.id.action_delete ->true
+            R.id.action_delete ->{
+                findNavController().navigate(R.id.action_PacienteOpcoesFrag_to_apagarPacienteFrag)
+                true
+            }
             else -> false
         }
     }
