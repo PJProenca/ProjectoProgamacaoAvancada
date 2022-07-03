@@ -53,5 +53,8 @@
         <action
             android:id="@+id/action_apagarPacienteFrag_to_PacienteOpcoesFrag"
             app:destination="@id/PacienteOpcoesFrag" />
+        <argument
+            android:name="paciente"
+            app:argType="com.proenca.projectoprogamacaoavancada.Pacientes" />
     </fragment>
 </navigation>
