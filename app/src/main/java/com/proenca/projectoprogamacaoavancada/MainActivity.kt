@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as PacienteOpcoesFrag).processaOpcaoMenu(item)
         }else if(fragment is AdicionarPacientes){
             opcaoProcessada = (fragment as AdicionarPacientes).processaOpcaoMenu(item)
+        }else if(fragment is ApagarPacienteFrag){
+            opcaoProcessada = (fragment as ApagarPacienteFrag).processaOpcaoMenu(item)
         }else{
             opcaoProcessada = false
         }

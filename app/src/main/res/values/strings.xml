@@ -35,4 +35,10 @@
     <string name="_18_12_1985">18/12/1985</string>
     <string name="paulo_proen_a">Paulo Proença</string>
     <string name="action_delete">action_delete</string>
+    <string name="ApagarPaciente">Apagar Paciente</string>
+    <string name="Confirmar_apagar_paciente">Tem a certeza que quer apagar o paciente?</string>
+    <string name="Cancel_apagar">Cancelar</string>
+    <string name="apagar_confirmacao">Apagar</string>
+    <string name="delete_sucess_paciente">Paciente apagado com sucesso</string>
+    <string name="apagar_paciente_erro">Erro ao apagar Paciente</string>
 </resources>
