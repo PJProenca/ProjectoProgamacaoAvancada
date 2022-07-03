@@ -30,4 +30,5 @@
     <string name="campoObrigatorio">Campo Obrigatório</string>
     <string name="PacienteaAddSucesso">Paciente adicionado com Sucesso</string>
     <string name="PacienteAddErro">Erro ao adicionar Paciente</string>
+    <string name="fragment_apagar_paciente">Apagar Paciente</string>
 </resources>
