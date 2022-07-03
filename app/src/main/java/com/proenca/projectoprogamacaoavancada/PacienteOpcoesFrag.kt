@@ -21,6 +21,16 @@ import com.proenca.projectoprogamacaoavancada.databinding.FragmentPacientesOpcoe
  */
 class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
+    var pacienteSelec:Pacientes ?=null
+    get() = field
+    set(value) {
+        if (value!=field){
+            field=value
+            (requireActivity() as MainActivity).atualizaOpcoes(field!=null)
+        }
+    }
+
+
     private var _binding: FragmentPacientesOpcoesBinding? = null
     private var adapterPacientes :AdapaterPacientes? =null
 
@@ -46,7 +56,7 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         adapterPacientes = AdapaterPacientes(this)
         binding.recyclerViewPacientes.adapter = adapterPacientes
         binding.recyclerViewPacientes.layoutManager = LinearLayoutManager(requireContext())
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.itemAtual = R.menu.menu_barra
 

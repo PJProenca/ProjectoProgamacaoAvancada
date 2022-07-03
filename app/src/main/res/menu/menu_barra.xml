@@ -11,10 +11,12 @@
         android:id="@+id/action_edit"
         android:icon="@drawable/icons8_edit_30"
         android:title="@string/alterar"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
     <item
         android:id="@+id/action_delete"
         android:icon="@drawable/icons8_trash_30"
         android:title="@string/eliminar"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
 </menu>

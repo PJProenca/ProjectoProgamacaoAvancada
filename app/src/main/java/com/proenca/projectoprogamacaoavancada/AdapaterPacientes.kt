@@ -17,7 +17,7 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
         }
     }
 
-    class ViewHolderPacientes(itemPacientes: View) : RecyclerView.ViewHolder(itemPacientes), View.OnClickListener{
+    inner class ViewHolderPacientes(itemPacientes: View) : RecyclerView.ViewHolder(itemPacientes), View.OnClickListener{
             val textViewNome = itemPacientes.findViewById<TextView>(R.id.textViewNomePaciente)
             val textViewDataNasc = itemPacientes.findViewById<TextView>(R.id.textViewDataNasc)
             val textViewAltura = itemPacientes.findViewById<TextView>(R.id.textViewAltura)
@@ -41,6 +41,7 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
 
         private fun seleciona() {
             selec = this
+            fragment.pacienteSelec = paciente
             itemView.setBackgroundResource(android.R.color.holo_blue_dark)
         }
 
