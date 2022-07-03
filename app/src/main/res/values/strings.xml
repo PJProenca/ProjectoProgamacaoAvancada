@@ -27,4 +27,5 @@
     <string name="adicionarPaciente">Adicionar Paciente</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="campoObrigatorio">Campo Obrigatório</string>
 </resources>

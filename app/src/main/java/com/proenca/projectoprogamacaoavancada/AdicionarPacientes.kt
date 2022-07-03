@@ -5,39 +5,32 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import com.proenca.projectoprogamacaoavancada.databinding.FragmentAdicionarPacientesBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AdicionarPacientes.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AdicionarPacientes : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentAdicionarPacientesBinding? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_adicionar_pacientes, container, false)
+        _binding = FragmentAdicionarPacientesBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,33 +43,63 @@ class AdicionarPacientes : Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_save -> true
+            R.id.action_save -> {
+                guardarPaciente()
+                true
+            }
             R.id.action_cancel -> {
-                findNavController().navigate(R.id.action_adicionarPacientes_to_PacienteOpcoesFrag)
+                voltarOpcoesPacientes()
                 true
             }
             else -> false
         }
     }
 
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AdicionarPacientes.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AdicionarPacientes().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun voltarOpcoesPacientes() {
+        findNavController().navigate(R.id.action_adicionarPacientes_to_PacienteOpcoesFrag)
     }
+
+    private fun guardarPaciente() {
+        val nome = binding.editTextNomePaciente.text.toString()
+        if (nome.isBlank()) {
+            binding.editTextNomePaciente.error = getString(R.string.campoObrigatorio)
+            binding.editTextNomePaciente.requestFocus()
+            return
+        }
+
+        val altura = binding.editTextAltura.text.toString()
+        if (altura.isBlank()) {
+            binding.editTextAltura.error = getString(R.string.campoObrigatorio)
+            binding.editTextAltura.requestFocus()
+            return
+        }
+
+        var calendarView = binding.calendarView
+        var dataNasc = calendarView.date
+            calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
+
+            val data = Calendar.getInstance()
+            data.set(ano,mes,dia)
+            dataNasc= data.timeInMillis
+        }
+        val dateFormat = SimpleDateFormat("dd-MM-yyy")
+
+        val data = dateFormat.format(dataNasc)
+        val paciente = Pacientes(nome, data, altura.toLong())
+
+
+        val endereco = requireActivity().contentResolver.insert(
+            myContentProvider.ENDERECO_PACIENTES,
+            paciente.toContentValues()
+        )
+
+        if (endereco != null ){
+            Toast.makeText(requireContext(),"Paciente adicionado com Sucesso",Toast.LENGTH_LONG).show()
+            voltarOpcoesPacientes()
+        }else{
+            Snackbar.make(binding.editTextNomePaciente,"Erro ao adicionar Paciente",Snackbar.LENGTH_INDEFINITE).show()
+        }
+
+    }
+
 }
