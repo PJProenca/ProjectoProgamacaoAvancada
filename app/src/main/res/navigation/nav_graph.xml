@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFrag_to_adicionarPacientes"
             app:destination="@id/adicionarPacientes" />
+        <action
+            android:id="@+id/action_MenuPrincipalFrag_to_apagarPacienteFrag"
+            app:destination="@id/apagarPacienteFrag" />
     </fragment>
     <fragment
         android:id="@+id/PacienteOpcoesFrag"

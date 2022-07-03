@@ -34,7 +34,7 @@
         android:id="@+id/recyclerViewPacientes"
         android:layout_width="408dp"
         android:layout_height="581dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="130dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

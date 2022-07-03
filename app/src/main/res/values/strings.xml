@@ -31,4 +31,7 @@
     <string name="PacienteaAddSucesso">Paciente adicionado com Sucesso</string>
     <string name="PacienteAddErro">Erro ao adicionar Paciente</string>
     <string name="fragment_apagar_paciente">Apagar Paciente</string>
+    <string name="_180">180</string>
+    <string name="_18_12_1985">18/12/1985</string>
+    <string name="paulo_proen_a">Paulo Proença</string>
 </resources>
