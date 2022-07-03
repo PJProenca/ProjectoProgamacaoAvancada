@@ -17,11 +17,13 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
         }
     }
 
-    class ViewHolderPacientes(itemPacientes: View) : RecyclerView.ViewHolder(itemPacientes) {
+    class ViewHolderPacientes(itemPacientes: View) : RecyclerView.ViewHolder(itemPacientes), View.OnClickListener{
             val textViewNome = itemPacientes.findViewById<TextView>(R.id.textViewNomePaciente)
             val textViewDataNasc = itemPacientes.findViewById<TextView>(R.id.textViewDataNasc)
             val textViewAltura = itemPacientes.findViewById<TextView>(R.id.textViewAltura)
-
+                init {
+                    itemPacientes.setOnClickListener(this)
+                }
             var paciente : Pacientes? = null
             get()= field
             set(value) {
@@ -30,7 +32,25 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
                 textViewDataNasc.text = paciente?.dataNasc?: ""
                 textViewAltura.text = paciente?.altura.toString()
             }
+
+        override fun onClick(p0: View?) {
+            selec?.desseleciona()
+            this.seleciona()
+
+        }
+
+        private fun seleciona() {
+            selec = this
+            itemView.setBackgroundResource(android.R.color.holo_blue_dark)
+        }
+
+        private fun desseleciona() {
+            itemView.setBackgroundResource(android.R.color.darker_gray)
+        }
+
+
     }
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -51,5 +71,8 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
         if (cursor == null) return 0
 
         return cursor!!.count
+    }
+    companion object{
+        var selec : ViewHolderPacientes?= null
     }
 }

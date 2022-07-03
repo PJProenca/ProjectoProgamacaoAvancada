@@ -28,4 +28,6 @@
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="campoObrigatorio">Campo Obrigatório</string>
+    <string name="PacienteaAddSucesso">Paciente adicionado com Sucesso</string>
+    <string name="PacienteAddErro">Erro ao adicionar Paciente</string>
 </resources>

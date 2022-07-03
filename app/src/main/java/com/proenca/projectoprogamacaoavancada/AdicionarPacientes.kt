@@ -74,7 +74,7 @@ class AdicionarPacientes : Fragment() {
             return
         }
 
-        var calendarView = binding.calendarView
+        val calendarView = binding.calendarView
         var dataNasc = calendarView.date
             calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
 
@@ -94,10 +94,10 @@ class AdicionarPacientes : Fragment() {
         )
 
         if (endereco != null ){
-            Toast.makeText(requireContext(),"Paciente adicionado com Sucesso",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),getString(R.string.PacienteaAddSucesso),Toast.LENGTH_LONG).show()
             voltarOpcoesPacientes()
         }else{
-            Snackbar.make(binding.editTextNomePaciente,"Erro ao adicionar Paciente",Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(binding.editTextNomePaciente,getString(R.string.PacienteAddErro),Snackbar.LENGTH_INDEFINITE).show()
         }
 
     }
