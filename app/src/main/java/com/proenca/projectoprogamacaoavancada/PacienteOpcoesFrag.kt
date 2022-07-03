@@ -70,7 +70,8 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             }
             R.id.action_edit ->true
             R.id.action_delete ->{
-                findNavController().navigate(R.id.action_PacienteOpcoesFrag_to_apagarPacienteFrag)
+                val acao = PacienteOpcoesFragDirections.actionPacienteOpcoesFragToApagarPacienteFrag(pacienteSelec!!)
+                findNavController().navigate(acao)
                 true
             }
             else -> false

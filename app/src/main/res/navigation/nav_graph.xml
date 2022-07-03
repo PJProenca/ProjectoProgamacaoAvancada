@@ -14,12 +14,6 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/PacienteOpcoesFrag" />
-        <action
-            android:id="@+id/action_MenuPrincipalFrag_to_adicionarPacientes"
-            app:destination="@id/adicionarPacientes" />
-        <action
-            android:id="@+id/action_MenuPrincipalFrag_to_apagarPacienteFrag"
-            app:destination="@id/apagarPacienteFrag" />
     </fragment>
     <fragment
         android:id="@+id/PacienteOpcoesFrag"
@@ -50,9 +44,8 @@
         android:name="com.proenca.projectoprogamacaoavancada.ApagarPacienteFrag"
         android:label="@string/fragment_apagar_paciente"
         tools:layout="@layout/fragment_apagar_paciente">
-        <action
-            android:id="@+id/action_apagarPacienteFrag_to_PacienteOpcoesFrag"
-            app:destination="@id/PacienteOpcoesFrag" />
+
+
         <argument
             android:name="paciente"
             app:argType="com.proenca.projectoprogamacaoavancada.Pacientes" />

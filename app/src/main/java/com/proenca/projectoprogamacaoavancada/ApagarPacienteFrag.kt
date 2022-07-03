@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentApagarPacienteBinding
 
 
+
+
 /**
  * A simple [Fragment] subclass.
  * Use the [ApagarPacienteFrag.newInstance] factory method to
@@ -18,6 +20,8 @@ class ApagarPacienteFrag : Fragment() {
     private var _binding: FragmentApagarPacienteBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var paciente : Pacientes
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -25,6 +29,10 @@ class ApagarPacienteFrag : Fragment() {
         activity.fragment = this
         activity.itemAtual = R.menu.menu_apagar
 
+        paciente = ApagarPacienteFragArgs.fromBundle(arguments!!).paciente
+        binding.textViewNomePacienteApaga.text = paciente.nome
+        binding.textViewAlturaApaga.text = paciente.altura.toString()
+        binding.textViewDataNascApaga.text = paciente.dataNasc
     }
 
     override fun onDestroyView() {
