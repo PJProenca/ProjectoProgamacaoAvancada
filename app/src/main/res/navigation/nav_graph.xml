@@ -38,6 +38,11 @@
         <action
             android:id="@+id/action_AdicionaEditaPacientes_to_PacienteOpcoesFrag"
             app:destination="@id/PacienteOpcoesFrag" />
+        <argument
+            android:name="paciente"
+            app:argType="com.proenca.projectoprogamacaoavancada.Pacientes"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/apagarPacienteFrag"
