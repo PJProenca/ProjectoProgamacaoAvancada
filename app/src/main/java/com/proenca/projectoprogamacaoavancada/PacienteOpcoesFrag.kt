@@ -65,10 +65,15 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     fun processaOpcaoMenu(item: MenuItem): Boolean{
         return when(item.itemId){
             R.id.action_add -> {
-                findNavController().navigate(R.id.action_PacienteOpcoesFrag_to_AdicionaEditaPacientes)
-                return true
+                val acao = PacienteOpcoesFragDirections.actionPacienteOpcoesFragToAdicionaEditaPacientes()
+                findNavController().navigate(acao)
+                true
             }
-            R.id.action_edit ->true
+            R.id.action_edit ->{
+                val acao = PacienteOpcoesFragDirections.actionPacienteOpcoesFragToAdicionaEditaPacientes(pacienteSelec)
+                findNavController().navigate(acao)
+                true
+            }
             R.id.action_delete ->{
                 val acao = PacienteOpcoesFragDirections.actionPacienteOpcoesFragToApagarPacienteFrag(pacienteSelec!!)
                 findNavController().navigate(acao)
