@@ -65,7 +65,7 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     fun processaOpcaoMenu(item: MenuItem): Boolean{
         return when(item.itemId){
             R.id.action_add -> {
-                findNavController().navigate(R.id.action_PacienteOpcoesFrag_to_adicionarPacientes)
+                findNavController().navigate(R.id.action_PacienteOpcoesFrag_to_AdicionaEditaPacientes)
                 return true
             }
             R.id.action_edit ->true

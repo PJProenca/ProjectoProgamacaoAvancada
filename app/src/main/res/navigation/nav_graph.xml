@@ -21,22 +21,22 @@
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_pacientes_opcoes">
         <action
-            android:id="@+id/action_PacienteOpcoesFrag_to_adicionarPacientes"
-            app:destination="@id/adicionarPacientes" />
-        <action
             android:id="@+id/action_PacienteOpcoesFrag_to_MenuPrincipalFrag"
             app:destination="@id/MenuPrincipalFrag" />
         <action
             android:id="@+id/action_PacienteOpcoesFrag_to_apagarPacienteFrag"
             app:destination="@id/apagarPacienteFrag" />
+        <action
+            android:id="@+id/action_PacienteOpcoesFrag_to_AdicionaEditaPacientes"
+            app:destination="@id/AdicionaEditaPacientes" />
     </fragment>
     <fragment
-        android:id="@+id/adicionarPacientes"
-        android:name="com.proenca.projectoprogamacaoavancada.AdicionarPacientes"
-        android:label="@string/adicionarPaciente"
-        tools:layout="@layout/fragment_adicionar_pacientes">
+        android:id="@+id/AdicionaEditaPacientes"
+        android:name="com.proenca.projectoprogamacaoavancada.AdicionaEditaPacientes"
+        android:label="@string/AdicionaEditaPaciente"
+        tools:layout="@layout/fragment_adiciona_edita_pacientes">
         <action
-            android:id="@+id/action_adicionarPacientes_to_PacienteOpcoesFrag"
+            android:id="@+id/action_AdicionaEditaPacientes_to_PacienteOpcoesFrag"
             app:destination="@id/PacienteOpcoesFrag" />
     </fragment>
     <fragment

@@ -9,13 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.proenca.projectoprogamacaoavancada.databinding.FragmentAdicionarPacientesBinding
+import com.proenca.projectoprogamacaoavancada.databinding.FragmentAdicionaEditaPacientesBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AdicionarPacientes : Fragment() {
-    private var _binding: FragmentAdicionarPacientesBinding? = null
+class AdicionaEditaPacientes : Fragment() {
+    private var _binding: FragmentAdicionaEditaPacientesBinding? = null
 
     private val binding get() = _binding!!
 
@@ -25,7 +25,7 @@ class AdicionarPacientes : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAdicionarPacientesBinding.inflate(inflater,container,false)
+        _binding = FragmentAdicionaEditaPacientesBinding.inflate(inflater,container,false)
         return binding.root
     }
     override fun onDestroyView() {
@@ -56,7 +56,7 @@ class AdicionarPacientes : Fragment() {
     }
 
     private fun voltarOpcoesPacientes() {
-        findNavController().navigate(R.id.action_adicionarPacientes_to_PacienteOpcoesFrag)
+        findNavController().navigate(R.id.action_AdicionaEditaPacientes_to_PacienteOpcoesFrag)
     }
 
     private fun guardarPaciente() {
