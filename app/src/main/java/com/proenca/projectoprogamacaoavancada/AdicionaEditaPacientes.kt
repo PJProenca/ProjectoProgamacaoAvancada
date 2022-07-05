@@ -1,5 +1,6 @@
 package com.proenca.projectoprogamacaoavancada
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -86,7 +87,7 @@ class AdicionaEditaPacientes : Fragment() {
 
         val calendarView = binding.calendarView
         var dataNasc = calendarView.date
-            calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
+        calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
 
             val data = Calendar.getInstance()
             data.set(ano,mes,dia)
@@ -95,7 +96,7 @@ class AdicionaEditaPacientes : Fragment() {
         val dateFormat = SimpleDateFormat("dd-MM-yyy")
 
         val data = dateFormat.format(dataNasc)
-        val paciente = Pacientes(nome, data, altura.toLong())
+        //val paciente = Pacientes(nome, data, altura.toLong())
         val pacienteAdicionado =
             if(paciente == null){
                 adicionaPaciente(nome,data,altura)
@@ -103,12 +104,12 @@ class AdicionaEditaPacientes : Fragment() {
                 editaPaciente(nome,data,altura)
             }
 
-        val endereco = requireActivity().contentResolver.insert(
-            myContentProvider.ENDERECO_PACIENTES,
-            paciente.toContentValues()
-        )
+//        val endereco = requireActivity().contentResolver.insert(
+//            myContentProvider.ENDERECO_PACIENTES,
+//            paciente.toContentValues()
+//        )
 
-        if (endereco != null ){
+        if (pacienteAdicionado != null ){
             Toast.makeText(requireContext(),getString(R.string.PacienteaAddSucesso),Toast.LENGTH_LONG).show()
             voltarOpcoesPacientes()
         }else{
@@ -119,13 +120,15 @@ class AdicionaEditaPacientes : Fragment() {
 
     private fun adicionaPaciente(nome: String, data: String, altura: String): Boolean {
         val paciente = Pacientes(nome,data,altura.toLong())
+
         val endereco = requireActivity().contentResolver.insert(myContentProvider.ENDERECO_PACIENTES,paciente.toContentValues())
         return endereco !=null
     }
 
     private fun editaPaciente(nome: String, data: String, altura: String): Any {
         val paciente = Pacientes(nome,data,altura.toLong())
-        val endereco = requireActivity().contentResolver.update(myContentProvider.ENDERECO_PACIENTES,paciente.toContentValues(),null,null)
+        val enderecoPaciente = Uri.withAppendedPath(myContentProvider.ENDERECO_PACIENTES,"${this.paciente!!.id}")
+        val endereco = requireActivity().contentResolver.update(enderecoPaciente,paciente.toContentValues(),null,null)
         return  endereco == 1
     }
 }

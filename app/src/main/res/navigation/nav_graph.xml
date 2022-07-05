@@ -64,10 +64,22 @@
     <fragment
         android:id="@+id/alimentos_opcoes"
         android:name="com.proenca.projectoprogamacaoavancada.alimentos_opcoes"
-        android:label="fragment_alimentos_opcoes"
-        tools:layout="@layout/fragment_alimentos_opcoes" >
+        android:label="@string/alimentoOpcoes"
+        tools:layout="@layout/fragment_alimentos_opcoes">
         <action
             android:id="@+id/action_alimentos_opcoes_to_MenuPrincipalFrag"
             app:destination="@id/MenuPrincipalFrag" />
+        <action
+            android:id="@+id/action_alimentos_opcoes_to_adicionarAlimentos"
+            app:destination="@id/adicionarAlimentos" />
+    </fragment>
+    <fragment
+        android:id="@+id/adicionarAlimentos"
+        android:name="com.proenca.projectoprogamacaoavancada.AdicionarAlimentos"
+        android:label="@string/fragment_adicionar_alimentos"
+        tools:layout="@layout/fragment_adicionar_alimentos">
+        <action
+            android:id="@+id/action_adicionarAlimentos_to_alimentos_opcoes"
+            app:destination="@id/alimentos_opcoes" />
     </fragment>
 </navigation>

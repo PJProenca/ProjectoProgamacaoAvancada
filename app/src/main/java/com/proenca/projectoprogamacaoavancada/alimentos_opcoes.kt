@@ -3,18 +3,22 @@ package com.proenca.projectoprogamacaoavancada
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentAlimentosOpcoesBinding
 
 
 class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
 
     private var _binding: FragmentAlimentosOpcoesBinding?=null
+    private var adapterAlimentos: AdapterAlimentos?=null
 
     private val binding get() = _binding!!
 
@@ -22,8 +26,27 @@ class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         LoaderManager.getInstance(this).initLoader(ID_LOADER_ALIMENTOS, null, this)
+
+        adapterAlimentos= AdapterAlimentos(this)
+        binding.recyclerViewAlimentos.adapter=adapterAlimentos
+        binding.recyclerViewAlimentos.layoutManager = LinearLayoutManager(requireContext())
+        val activity = requireActivity() as MainActivity
+        activity.fragment = this
+        activity.itemAtual = R.menu.menu_barra
     }
 
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean{
+        return when(item.itemId){
+            R.id.action_add -> {
+                findNavController().navigate(R.id.action_alimentos_opcoes_to_adicionarAlimentos)
+                return true
+            }
+            R.id.action_edit ->true
+            R.id.action_delete ->true
+            else -> false
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding=null
@@ -50,11 +73,11 @@ class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
 
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        //TODO("Not yet implemented")
+        adapterAlimentos!!.cursor = data
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        //TODO("Not yet implemented")
+        adapterAlimentos!!.cursor= null
     }
 
     companion object{

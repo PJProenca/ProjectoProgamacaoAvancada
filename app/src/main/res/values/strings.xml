@@ -47,4 +47,8 @@
     <string name="hintAlimento">Pão</string>
     <string name="AlimentosHidratos">Hidratos por 100g</string>
     <string name="hinValorHidratos">75</string>
+    <string name="alimentoOpcoes">Alimentos - Opções</string>
+    <string name="fragment_adicionar_alimentos">Adicionar Alimentos</string>
+    <string name="AlimentadoGuardado">Alimento Guardado com Sucesso</string>
+    <string name="ErroGuardarAlimento">Erro ao Guardar Alimento</string>
 </resources>
