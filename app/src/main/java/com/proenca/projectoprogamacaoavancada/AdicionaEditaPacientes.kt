@@ -19,6 +19,8 @@ class AdicionaEditaPacientes : Fragment() {
 
     private val binding get() = _binding!!
 
+    private var paciente : Pacientes?= null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,14 @@ class AdicionaEditaPacientes : Fragment() {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.itemAtual = R.menu.menu_guardar
+        if(arguments!=null){
+            paciente = AdicionaEditaPacientesArgs.fromBundle(arguments!!).paciente
+            if(paciente != null){
+                binding.editTextNomePaciente.setText(paciente!!.nome)
+                binding.editTextAltura.setText(paciente!!.altura.toString())
+            }
+        }
+
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
@@ -86,7 +96,12 @@ class AdicionaEditaPacientes : Fragment() {
 
         val data = dateFormat.format(dataNasc)
         val paciente = Pacientes(nome, data, altura.toLong())
-
+        val pacienteAdicionado =
+            if(paciente == null){
+                adicionaPaciente(nome,data,altura)
+            }else{
+                editaPaciente(nome,data,altura)
+            }
 
         val endereco = requireActivity().contentResolver.insert(
             myContentProvider.ENDERECO_PACIENTES,
@@ -102,4 +117,15 @@ class AdicionaEditaPacientes : Fragment() {
 
     }
 
+    private fun adicionaPaciente(nome: String, data: String, altura: String): Boolean {
+        val paciente = Pacientes(nome,data,altura.toLong())
+        val endereco = requireActivity().contentResolver.insert(myContentProvider.ENDERECO_PACIENTES,paciente.toContentValues())
+        return endereco !=null
+    }
+
+    private fun editaPaciente(nome: String, data: String, altura: String): Any {
+        val paciente = Pacientes(nome,data,altura.toLong())
+        val endereco = requireActivity().contentResolver.update(myContentProvider.ENDERECO_PACIENTES,paciente.toContentValues(),null,null)
+        return  endereco == 1
+    }
 }
