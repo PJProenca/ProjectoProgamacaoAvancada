@@ -52,7 +52,11 @@ class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
                 return true
             }
             R.id.action_edit ->true
-            R.id.action_delete ->true
+            R.id.action_delete ->{
+                val acao = alimentos_opcoesDirections.actionAlimentosOpcoesToApagarAlimento(alimentoSelect!!)
+                findNavController().navigate(acao)
+                true
+            }
             else -> false
         }
     }

@@ -37,7 +37,7 @@ class ApagarPacienteFrag : Fragment() {
 
         paciente = ApagarPacienteFragArgs.fromBundle(arguments!!).paciente
         binding.textViewNomePacienteApaga.text = paciente.nome
-        binding.textViewAlturaApaga.text = paciente.altura.toString()
+        binding.textViewPacienteAlturaApagar.text = paciente.altura.toString()
         binding.textViewDataNascApaga.text = paciente.dataNasc
     }
 

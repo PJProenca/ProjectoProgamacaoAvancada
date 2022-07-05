@@ -93,5 +93,8 @@
         <action
             android:id="@+id/action_apagarAlimento_to_alimentos_opcoes"
             app:destination="@id/alimentos_opcoes" />
+        <argument
+            android:name="alimento"
+            app:argType="com.proenca.projectoprogamacaoavancada.Alimentos" />
     </fragment>
 </navigation>

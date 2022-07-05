@@ -64,6 +64,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as alimentos_opcoes).processaOpcaoMenu(item)
         }else if(fragment is AdicionarAlimentos){
             opcaoProcessada = (fragment as AdicionarAlimentos).processaOpcaoMenu(item)
+        }else if(fragment is ApagarAlimento){
+            opcaoProcessada = (fragment as ApagarAlimento).processaOpcaoMenu(item)
         }else{
             opcaoProcessada = false
         }

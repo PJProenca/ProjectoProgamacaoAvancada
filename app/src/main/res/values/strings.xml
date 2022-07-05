@@ -51,4 +51,8 @@
     <string name="fragment_adicionar_alimentos">Adicionar Alimentos</string>
     <string name="AlimentadoGuardado">Alimento Guardado com Sucesso</string>
     <string name="ErroGuardarAlimento">Erro ao Guardar Alimento</string>
+    <string name="ApagarAlimentoTitulo">Apagar Alimento</string>
+    <string name="ConfirmaApagaAlimento">Tem a certeza que pretende eliminar o Alimento?</string>
+    <string name="AlimentoApagadoSucesso">Alimento eliminado com sucesso!!</string>
+    <string name="AlimentoApagadoErro">Erro ao Eliminar Alimento!!</string>
 </resources>
