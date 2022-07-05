@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/PacienteOpcoesFrag" />
+        <action
+            android:id="@+id/action_MenuPrincipalFrag_to_alimentos_opcoes"
+            app:destination="@id/alimentos_opcoes" />
     </fragment>
     <fragment
         android:id="@+id/PacienteOpcoesFrag"
@@ -57,5 +60,14 @@
         <action
             android:id="@+id/action_apagarPacienteFrag_to_PacienteOpcoesFrag"
             app:destination="@id/PacienteOpcoesFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/alimentos_opcoes"
+        android:name="com.proenca.projectoprogamacaoavancada.alimentos_opcoes"
+        android:label="fragment_alimentos_opcoes"
+        tools:layout="@layout/fragment_alimentos_opcoes" >
+        <action
+            android:id="@+id/action_alimentos_opcoes_to_MenuPrincipalFrag"
+            app:destination="@id/MenuPrincipalFrag" />
     </fragment>
 </navigation>

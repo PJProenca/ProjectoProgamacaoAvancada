@@ -43,4 +43,8 @@
     <string name="apagar_paciente_erro">Erro ao apagar Paciente</string>
     <string name="adicionaPacienteTitulo">Adicionar Paciente</string>
     <string name="editarPacienteTitulo">Editar Paciente</string>
+    <string name="NomeAlimento">Alimento</string>
+    <string name="hintAlimento">Pão</string>
+    <string name="AlimentosHidratos">Hidratos por 100g</string>
+    <string name="hinValorHidratos">75</string>
 </resources>

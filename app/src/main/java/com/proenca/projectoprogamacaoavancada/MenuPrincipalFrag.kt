@@ -36,6 +36,9 @@ class MenuPrincipalFrag : Fragment() {
         binding.buttonPaciente.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+        binding.buttonAlimentos.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuPrincipalFrag_to_alimentos_opcoes)
+        }
 
 
         val activity = activity as MainActivity
