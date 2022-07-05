@@ -48,10 +48,17 @@ class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     fun processaOpcaoMenu(item: MenuItem): Boolean{
         return when(item.itemId){
             R.id.action_add -> {
-                findNavController().navigate(R.id.action_alimentos_opcoes_to_adicionarAlimentos)
+                val acao = alimentos_opcoesDirections.actionAlimentosOpcoesToAdicionarAlimentos()
+                findNavController().navigate(acao)
+                (activity as MainActivity).alterarTitulo(R.string.adicionaAlimentoTitulo)
                 return true
             }
-            R.id.action_edit ->true
+            R.id.action_edit ->{
+                val acao = alimentos_opcoesDirections.actionAlimentosOpcoesToAdicionarAlimentos(alimentoSelect)
+                findNavController().navigate(acao)
+                (activity as MainActivity).alterarTitulo(R.string.editaAlimentoTitulo)
+                true
+            }
             R.id.action_delete ->{
                 val acao = alimentos_opcoesDirections.actionAlimentosOpcoesToApagarAlimento(alimentoSelect!!)
                 findNavController().navigate(acao)
@@ -90,6 +97,7 @@ class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if(_binding == null) return
         adapterAlimentos!!.cursor= null
     }
 

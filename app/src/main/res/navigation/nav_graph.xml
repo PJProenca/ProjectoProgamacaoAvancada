@@ -84,6 +84,11 @@
         <action
             android:id="@+id/action_adicionarAlimentos_to_alimentos_opcoes"
             app:destination="@id/alimentos_opcoes" />
+        <argument
+            android:name="alimento"
+            app:argType="com.proenca.projectoprogamacaoavancada.Alimentos"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/apagarAlimento"

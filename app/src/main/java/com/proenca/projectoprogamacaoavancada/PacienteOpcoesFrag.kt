@@ -66,8 +66,8 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         return when(item.itemId){
             R.id.action_add -> {
                 val acao = PacienteOpcoesFragDirections.actionPacienteOpcoesFragToAdicionaEditaPacientes()
-                (activity as MainActivity).alterarTitulo(R.string.adicionaPacienteTitulo)
                 findNavController().navigate(acao)
+                (activity as MainActivity).alterarTitulo(R.string.adicionaPacienteTitulo)
                 true
             }
             R.id.action_edit ->{

@@ -1,5 +1,6 @@
 package com.proenca.projectoprogamacaoavancada
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -26,6 +27,8 @@ class AdicionarAlimentos : Fragment() {
 
     private val binding get() = _binding!!
 
+    private var alimento:Alimentos?=null
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,6 +37,15 @@ class AdicionarAlimentos : Fragment() {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.itemAtual = R.menu.menu_guardar
+
+        if(arguments!=null){
+            alimento = AdicionarAlimentosArgs.fromBundle(arguments!!).alimento
+            if(alimento != null){
+                binding.editTextAlimento.setText(alimento!!.nome)
+                binding.editTextHidratos.setText(alimento!!.hidratos.toString())
+            }
+        }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -81,22 +93,36 @@ class AdicionarAlimentos : Fragment() {
             binding.editTextHidratos.requestFocus()
             return
         }
+        val alimentoAdicionado =
+            if(alimento == null){
+                adicionaAlimento(nome,hidratos)
+            }else{
+                editaAlimento(nome,hidratos)
+            }
 
 
-        val alimento = Alimentos(nome, hidratos.toLong())
 
 
-        val endereco = requireActivity().contentResolver.insert(
-            myContentProvider.ENDERECO_ALIMENTOS,
-            alimento.toContentValues()
-        )
 
-        if (endereco != null ){
+        if (alimentoAdicionado != null ){
             Toast.makeText(requireContext(),R.string.AlimentadoGuardado, Toast.LENGTH_LONG).show()
             voltarOpcoesAlimentos()
         }else{
             Snackbar.make(binding.editTextAlimento,R.string.ErroGuardarAlimento, Snackbar.LENGTH_INDEFINITE).show()
         }
 
+    }
+
+    private fun adicionaAlimento(nome: String, hidratos: String): Boolean {
+        val alimento = Alimentos(nome,hidratos.toLong())
+        val endereco = requireActivity().contentResolver.insert(myContentProvider.ENDERECO_ALIMENTOS,alimento.toContentValues())
+        return endereco !=null
+    }
+
+    private fun editaAlimento(nome: String, hidratos: String): Any {
+        val alimento = Alimentos(nome,hidratos.toLong())
+        val enderecoAlimento = Uri.withAppendedPath(myContentProvider.ENDERECO_ALIMENTOS,"${this.alimento!!.id}")
+        val endereco = requireActivity().contentResolver.update(enderecoAlimento,alimento.toContentValues(),null,null)
+        return  endereco == 1
     }
 }
