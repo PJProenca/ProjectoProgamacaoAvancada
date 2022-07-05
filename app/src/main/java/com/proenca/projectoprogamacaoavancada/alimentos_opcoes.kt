@@ -22,6 +22,15 @@ class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
 
     private val binding get() = _binding!!
 
+    var alimentoSelect:Alimentos ?=null
+        get() = field
+        set(value) {
+            if (value!=field){
+                field=value
+                (requireActivity() as MainActivity).atualizaOpcoes(field!=null)
+            }
+        }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
