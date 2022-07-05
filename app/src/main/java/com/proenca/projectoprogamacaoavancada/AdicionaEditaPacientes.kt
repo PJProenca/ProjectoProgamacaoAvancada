@@ -21,8 +21,8 @@ class AdicionaEditaPacientes : Fragment() {
     private val binding get() = _binding!!
 
     private var paciente : Pacientes?= null
-
-
+    var dataNasc:Long=0L
+    var data: String=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +48,15 @@ class AdicionaEditaPacientes : Fragment() {
                 binding.editTextNomePaciente.setText(paciente!!.nome)
                 binding.editTextAltura.setText(paciente!!.altura.toString())
             }
+        }
+
+        val calendarView = binding.calendarView
+        dataNasc = calendarView.date
+        calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
+
+            val data = Calendar.getInstance()
+            data.set(ano,mes,dia)
+            dataNasc= data.timeInMillis
         }
 
     }
@@ -85,18 +94,18 @@ class AdicionaEditaPacientes : Fragment() {
             return
         }
 
-        val calendarView = binding.calendarView
-        var dataNasc = calendarView.date
-        calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
-
-            val data = Calendar.getInstance()
-            data.set(ano,mes,dia)
-            dataNasc= data.timeInMillis
-        }
+//        val calendarView = binding.calendarView
+//        var dataNasc = calendarView.date
+//        calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
+//
+//            val data = Calendar.getInstance()
+//            data.set(ano,mes,dia)
+//            dataNasc= data.timeInMillis
+//        }
         val dateFormat = SimpleDateFormat("dd-MM-yyy")
 
-        val data = dateFormat.format(dataNasc)
-        //val paciente = Pacientes(nome, data, altura.toLong())
+        data = dateFormat.format(dataNasc)
+
         val pacienteAdicionado =
             if(paciente == null){
                 adicionaPaciente(nome,data,altura)
@@ -104,10 +113,7 @@ class AdicionaEditaPacientes : Fragment() {
                 editaPaciente(nome,data,altura)
             }
 
-//        val endereco = requireActivity().contentResolver.insert(
-//            myContentProvider.ENDERECO_PACIENTES,
-//            paciente.toContentValues()
-//        )
+//
 
         if (pacienteAdicionado != null ){
             Toast.makeText(requireContext(),getString(R.string.PacienteaAddSucesso),Toast.LENGTH_LONG).show()
