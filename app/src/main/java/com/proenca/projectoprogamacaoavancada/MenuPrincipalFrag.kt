@@ -40,6 +40,10 @@ class MenuPrincipalFrag : Fragment() {
             findNavController().navigate(R.id.action_MenuPrincipalFrag_to_alimentos_opcoes)
         }
 
+        binding.buttonCalcular.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuPrincipalFrag_to_calcularFrag)
+        }
+
 
         val activity = activity as MainActivity
         activity.fragment = this

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFrag_to_alimentos_opcoes"
             app:destination="@id/alimentos_opcoes" />
+        <action
+            android:id="@+id/action_MenuPrincipalFrag_to_calcularFrag"
+            app:destination="@id/calcularFrag" />
     </fragment>
     <fragment
         android:id="@+id/PacienteOpcoesFrag"
@@ -102,4 +105,9 @@
             android:name="alimento"
             app:argType="com.proenca.projectoprogamacaoavancada.Alimentos" />
     </fragment>
+    <fragment
+        android:id="@+id/calcularFrag"
+        android:name="com.proenca.projectoprogamacaoavancada.CalcularFrag"
+        android:label="fragment_calcular"
+        tools:layout="@layout/fragment_calcular" />
 </navigation>

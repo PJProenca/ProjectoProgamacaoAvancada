@@ -41,4 +41,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_Alimentos" />
 
+    <Button
+        android:id="@+id/button_Calcular"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/buttonCalc"
+        app:backgroundTint="#009196"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Registos" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

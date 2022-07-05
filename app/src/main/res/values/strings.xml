@@ -57,4 +57,10 @@
     <string name="AlimentoApagadoErro">Erro ao Eliminar Alimento!!</string>
     <string name="adicionaAlimentoTitulo">Adicionar Alimentos</string>
     <string name="editaAlimentoTitulo">Editar Alimento</string>
+    <string name="buttonCalc">Calcular</string>
+    <string name="SelecionarAlimentoText">Selecione o Alimento</string>
+    <string name="SelectPeso">Intoduza o Peso do Paciente</string>
+    <string name="pesoAlim">Intoduza o Peso do Alimento</string>
+    <string name="selectGlicemia">Intoduza o valor da Glicemia</string>
+    <string name="validateCalc">Calcular</string>
 </resources>
