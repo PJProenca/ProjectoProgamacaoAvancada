@@ -24,13 +24,13 @@ class myContentProvider: ContentProvider() {
         sortOrder: String?
     ): Cursor? {
         val db = dbOpenHelper!!.readableDatabase
-
+        requireNotNull(projection)
         val colunas = projection as Array<String>
         val selArgs = selectionArgs as Array<String>?
 
         val id = uri.lastPathSegment
 
-        return when (getUriMatcher().match(uri)){
+        val cursor = when (getUriMatcher().match(uri)){
             URI_PACIENTES->TabelaPacientes(db).query(colunas,selection,selArgs,null,null,sortOrder)
             URI_PACIENTE_ESP -> TabelaPacientes(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
             URI_ALIMENTOS -> TabelaAlimentos(db).query(colunas,selection,selArgs,null,null,sortOrder)
@@ -39,6 +39,7 @@ class myContentProvider: ContentProvider() {
             URI_REGISTOS_ESP -> TabelaRegistos(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
             else -> null
         }
+        return cursor
     }
 
     override fun getType(uri: Uri): String? =
@@ -62,9 +63,10 @@ class myContentProvider: ContentProvider() {
             URI_ALIMENTOS-> TabelaAlimentos(db).insert(values)
             URI_REGISTOS-> TabelaRegistos(db).insert(values)
             URI_ALIM_REG -> TabelaAlimento_Registo(db).insert(values)
-            else->null
+            else-> -1
         }
-        if (id == 1L) return null
+        db.close()
+        if (id == -1L) return null
 
         return Uri.withAppendedPath(uri,"$id")
     }
@@ -74,7 +76,7 @@ class myContentProvider: ContentProvider() {
 
         val id = uri.lastPathSegment
 
-        return when(getUriMatcher().match(uri)){
+        val registoApagado = when(getUriMatcher().match(uri)){
 
             URI_PACIENTE_ESP -> TabelaPacientes(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
             URI_ALIMENTOS_ESP -> TabelaAlimentos(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
@@ -83,6 +85,8 @@ class myContentProvider: ContentProvider() {
 
             else->0
         }
+        db.close()
+        return registoApagado
     }
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArg: Array<out String>?): Int {
@@ -91,7 +95,7 @@ class myContentProvider: ContentProvider() {
 
         val id = uri.lastPathSegment
 
-        return when(getUriMatcher().match(uri)){
+        val registoAlterado = when(getUriMatcher().match(uri)){
 
             URI_PACIENTE_ESP -> TabelaPacientes(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))
             URI_ALIMENTOS_ESP -> TabelaAlimentos(db).update(values,"${BaseColumns._ID}=?", arrayOf("$id"))
@@ -99,6 +103,8 @@ class myContentProvider: ContentProvider() {
 
             else -> 0
         }
+        db.close()
+        return  registoAlterado
     }
 
     companion object{

@@ -41,4 +41,6 @@
     <string name="apagar_confirmacao">Apagar</string>
     <string name="delete_sucess_paciente">Paciente apagado com sucesso</string>
     <string name="apagar_paciente_erro">Erro ao apagar Paciente</string>
+    <string name="adicionaPacienteTitulo">Adicionar Paciente</string>
+    <string name="editarPacienteTitulo">Editar Paciente</string>
 </resources>

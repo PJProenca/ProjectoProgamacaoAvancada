@@ -66,12 +66,14 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         return when(item.itemId){
             R.id.action_add -> {
                 val acao = PacienteOpcoesFragDirections.actionPacienteOpcoesFragToAdicionaEditaPacientes()
+                (activity as MainActivity).alterarTitulo(R.string.adicionaPacienteTitulo)
                 findNavController().navigate(acao)
                 true
             }
             R.id.action_edit ->{
                 val acao = PacienteOpcoesFragDirections.actionPacienteOpcoesFragToAdicionaEditaPacientes(pacienteSelec)
                 findNavController().navigate(acao)
+                (activity as MainActivity).alterarTitulo(R.string.editarPacienteTitulo)
                 true
             }
             R.id.action_delete ->{
@@ -108,8 +110,12 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        //adapterPacientes!!.cursor = null
+
+        if(_binding == null) return
+        adapterPacientes!!.cursor = null
+
         binding.spinnerPacientes.adapter=null
+
     }
 
     companion object{

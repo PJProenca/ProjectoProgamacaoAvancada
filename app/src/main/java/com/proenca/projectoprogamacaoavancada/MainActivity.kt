@@ -15,7 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
     var fragment : Fragment?=null
+
     var itemAtual = R.menu.menu_main
     get() = field
     set(value) {
@@ -32,9 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
-
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -82,5 +82,9 @@ class MainActivity : AppCompatActivity() {
     fun atualizaOpcoes(mostraAlterarEliminar: Boolean) {
         menu!!.findItem(R.id.action_edit).setVisible(mostraAlterarEliminar)
         menu!!.findItem(R.id.action_delete).setVisible(mostraAlterarEliminar)
+    }
+
+    fun alterarTitulo(id_titulo : Int){
+        binding.toolbar.setTitle(id_titulo)
     }
 }
