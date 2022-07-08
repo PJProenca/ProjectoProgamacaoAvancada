@@ -91,6 +91,7 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
+
         CursorLoader(requireContext(),
         myContentProvider.ENDERECO_PACIENTES,
         TabelaPacientes.TODAS_COLUNAS,

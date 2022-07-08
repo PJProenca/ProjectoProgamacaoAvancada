@@ -29,7 +29,7 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
             set(value) {
                 field=value
                 textViewNome.text = paciente?.nome?: ""
-                textViewDataNasc.text = paciente?.dataNasc?: ""
+                textViewDataNasc.text = paciente?.dataNasc.toString()
                 textViewAltura.text = paciente?.altura.toString()
             }
 

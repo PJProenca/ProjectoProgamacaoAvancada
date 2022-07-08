@@ -18,7 +18,7 @@
     <string name="SelecionarPacienteText">Selecione o Paciente</string>
     <string name="DataNasc">Data de Nascimento</string>
     <string name="NomePaciente">Nome</string>
-    <string name="PacienteAltura">Altura</string>
+    <string name="PacienteAltura">Altura (cm)</string>
     <string name="adicionar">Adicionar</string>
     <string name="alterar">Alterar</string>
     <string name="eliminar">Eliminar</string>
@@ -44,9 +44,9 @@
     <string name="adicionaPacienteTitulo">Adicionar Paciente</string>
     <string name="editarPacienteTitulo">Editar Paciente</string>
     <string name="NomeAlimento">Alimento</string>
-    <string name="hintAlimento">Pão</string>
+    <string name="hintAlimento">Alimento</string>
     <string name="AlimentosHidratos">Hidratos por 100g</string>
-    <string name="hinValorHidratos">75</string>
+    <string name="hinValorHidratos">Hidratos por 100g</string>
     <string name="alimentoOpcoes">Alimentos - Opções</string>
     <string name="fragment_adicionar_alimentos">Adicionar Alimentos</string>
     <string name="AlimentadoGuardado">Alimento Guardado com Sucesso</string>

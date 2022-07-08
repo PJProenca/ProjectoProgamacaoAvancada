@@ -125,14 +125,14 @@ class AdicionaEditaPacientes : Fragment() {
     }
 
     private fun adicionaPaciente(nome: String, data: String, altura: String): Boolean {
-        val paciente = Pacientes(nome,data,altura.toLong())
+        val paciente = Pacientes(nome,data.toLong(),altura.toLong())
 
         val endereco = requireActivity().contentResolver.insert(myContentProvider.ENDERECO_PACIENTES,paciente.toContentValues())
         return endereco !=null
     }
 
     private fun editaPaciente(nome: String, data: String, altura: String): Any {
-        val paciente = Pacientes(nome,data,altura.toLong())
+        val paciente = Pacientes(nome,data.toLong(),altura.toLong())
         val enderecoPaciente = Uri.withAppendedPath(myContentProvider.ENDERECO_PACIENTES,"${this.paciente!!.id}")
         val endereco = requireActivity().contentResolver.update(enderecoPaciente,paciente.toContentValues(),null,null)
         return  endereco == 1

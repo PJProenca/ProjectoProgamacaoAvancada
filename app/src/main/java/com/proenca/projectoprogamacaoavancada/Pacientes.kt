@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import java.io.Serializable
 
-data class Pacientes( var nome : String,var dataNasc: String, var altura : Long,var id:Long= -1): Serializable{
+data class Pacientes( var nome : String,var dataNasc: Long, var altura : Long,var id:Long= -1): Serializable{
 
     fun toContentValues(): ContentValues{
         val valores =  ContentValues()
@@ -25,7 +25,7 @@ data class Pacientes( var nome : String,var dataNasc: String, var altura : Long,
 
             val id = cursor.getLong(id_Pos)
             val nome = cursor.getString(nome_pos)
-            val dataNasc = cursor.getString(dNasc_pos)
+            val dataNasc = cursor.getLong(dNasc_pos)
             val altura = cursor.getLong(altura_pos)
             return Pacientes(nome,dataNasc,altura,id)
         }
