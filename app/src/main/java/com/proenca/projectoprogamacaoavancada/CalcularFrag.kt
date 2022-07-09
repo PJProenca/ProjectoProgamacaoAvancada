@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -57,15 +58,15 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        if(id == ID_LOADER_PACIENTES){
+        if( id == ID_LOADER_PACIENTES){
             loader= CursorLoader(requireContext(),myContentProvider.ENDERECO_PACIENTES,
             TabelaPacientes.TODAS_COLUNAS,
             null,
             null,
             TabelaPacientes.C_NOME)
-        }else{
+        }else  if( id == ID_LOADER_ALIMENTOS){
             loader= CursorLoader(requireContext(),myContentProvider.ENDERECO_ALIMENTOS,
-                TabelaPacientes.TODAS_COLUNAS,
+                TabelaAlimentos.TODAS_COLUNAS,
                 null,
                 null,
                 TabelaAlimentos.C_NOME)
@@ -74,7 +75,19 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        //TODO("Not yet implemented")
+
+        if(loader.id== ID_LOADER_PACIENTES){
+        binding.spinnerCalcularPaciente.adapter= SimpleCursorAdapter(requireContext(),
+            android.R.layout.simple_list_item_1,
+            data, arrayOf(TabelaPacientes.C_NOME),
+            intArrayOf(android.R.id.text1),0
+        )
+        }else if(loader.id== ID_LOADER_ALIMENTOS){
+        binding.spinnerCalcularAlimentos.adapter= SimpleCursorAdapter(requireContext(),
+            android.R.layout.simple_list_item_1,
+            data, arrayOf(TabelaAlimentos.C_NOME),
+            intArrayOf(android.R.id.text1),0
+        )}
     }
 
     companion object{
