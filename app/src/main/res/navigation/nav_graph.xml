@@ -108,6 +108,6 @@
     <fragment
         android:id="@+id/calcularFrag"
         android:name="com.proenca.projectoprogamacaoavancada.CalcularFrag"
-        android:label="fragment_calcular"
+        android:label="@string/fragment_calcular"
         tools:layout="@layout/fragment_calcular" />
 </navigation>

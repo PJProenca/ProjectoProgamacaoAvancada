@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 class TabelaRegistos(db:SQLiteDatabase):TabelasBD(db,NOME) {
     override fun cria(){
         db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "$DATA_REG TEXT NOT NULL,$GLICEMIA INTEGER NOT NULL," +
+                "$DATA_REG INTEGER NOT NULL,$GLICEMIA INTEGER NOT NULL," +
                 "$INSULINA INTEGER NOT NULL,$PESO REAL NOT NULL ," +
                 "$ID_PACIENTE INTEGER NOT NULL," +
                 "FOREIGN KEY ($ID_PACIENTE) REFERENCES ${TabelaPacientes.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT) ")

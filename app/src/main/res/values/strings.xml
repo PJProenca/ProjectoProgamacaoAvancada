@@ -64,4 +64,7 @@
     <string name="selectGlicemia"> Introduza o valor da Glicemia</string>
     <string name="validateCalc">Calcular</string>
     <string name="AddAlimentoCalc">"Adicionar Alimento "</string>
+    <string name="SucessRegAdd">Registo Adiconado com Sucesso!!</string>
+    <string name="ErrorRegAdd">Erro ao Adicionar Registo !!</string>
+    <string name="fragment_calcular">Calcular UI</string>
 </resources>

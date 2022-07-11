@@ -9,11 +9,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import com.google.android.material.snackbar.Snackbar
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentCalcularBinding
+import java.util.*
 import kotlin.math.pow
 
 
@@ -22,12 +25,13 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
     private val binding get() = _binding!!
     private var loader:CursorLoader?=null
 
-    var valorTotalAlimento:Int=0
-    var valorCalculado:Int=0
-    var nomePaciente:String? =""
-    var altura:String?=""
+    private var valorTotalAlimento:Int=0
+    private var valorCalculado:Int=0
+    private var nomePaciente:String? =""
+    private var altura:String?=""
+    private var pesoAlimento:String?=""
 
-    var pesoAlimento:String?=""
+    //private var currentDate:Long?=0L
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,9 +45,7 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
 
             valorCalculado = calcularValorHidratos()
 
-
         }
-
 
     }
 
@@ -114,6 +116,10 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun guardarRegisto(){
+
+        val currentDate= Calendar.getInstance()
+
+        val dataReg = currentDate.timeInMillis
         val spinPacientesSelect = binding.spinnerCalcularPaciente.selectedItemId
         if (spinPacientesSelect.toString().isBlank()) {
             binding.textSelecPaciente.error = getString(R.string.campoObrigatorio)
@@ -142,10 +148,16 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         val indiceSensibilidade = indiceDeSensibilidade(pesoPaciente.toDouble(),altura!!.toDouble())
-        val unidadePorGlicemia =(glicemia.toInt() - 120)/indiceSensibilidade!!.toInt()
+        val unidadePorGlicemia =(glicemia.toLong() - 120)/indiceSensibilidade!!.toLong()
         val unidadeAdministrar = unidadePorGlicemia + valorCalculado
-       
 
+        val regAdicionado = adicionaRegisto(dataReg,glicemia.toLong(),unidadeAdministrar,pesoPaciente.toDouble(),spinPacientesSelect)
+        if(regAdicionado !=null) {
+            Toast.makeText(requireContext(), R.string.SucessRegAdd, Toast.LENGTH_LONG)
+                .show()
+        }else{
+            Snackbar.make(binding.textSelecPaciente,R.string.ErrorRegAdd,Snackbar.LENGTH_INDEFINITE).show()
+        }
 
     }
 
@@ -192,6 +204,13 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
           in 40.0..Double.MAX_VALUE -> 15
             else -> null
         }
+    }
+
+
+    private fun adicionaRegisto( data_reg:Long,glicemia: Long, insulina: Long, peso: Double, id_paciente: Long):Boolean{
+        val registo = Registos(data_reg, glicemia, insulina, peso, id_paciente)
+        val endereco = requireActivity().contentResolver.insert(myContentProvider.ENDERECO_REGISTOS,registo.toContentValues())
+        return endereco !=null
     }
 
 }

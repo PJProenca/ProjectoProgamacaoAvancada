@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class Registos(var data_reg:String,
+data class Registos(var data_reg:Long,
                     var glicemia: Long,
                     var insulina: Long,
                     var peso: Double,
@@ -32,7 +32,7 @@ data class Registos(var data_reg:String,
 
             val id_reg = cursor.getLong(id_reg_pos)
             val id_paciente = cursor.getLong(id_paciente_pos)
-            val data_reg = cursor.getString(data_reg_pos)
+            val data_reg = cursor.getLong(data_reg_pos)
             val glicemia = cursor.getLong(glicemia_pos)
             val insulina = cursor.getLong(insulina_pos)
             val peso = cursor.getDouble(peso_pos)
