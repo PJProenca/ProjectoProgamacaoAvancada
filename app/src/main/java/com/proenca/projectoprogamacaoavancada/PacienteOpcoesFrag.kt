@@ -91,17 +91,19 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
-
-        CursorLoader(requireContext(),
-        myContentProvider.ENDERECO_PACIENTES,
-        TabelaPacientes.TODAS_COLUNAS,
-        null,
-        null,
-        TabelaPacientes.C_NOME)
+        CursorLoader(
+            requireContext(),
+            myContentProvider.ENDERECO_PACIENTES,
+            TabelaPacientes.TODAS_COLUNAS,
+            null,
+            null,
+            TabelaPacientes.C_NOME
+        )
 
 
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+
         adapterPacientes!!.cursor = data
         binding.spinnerPacientes.adapter=SimpleCursorAdapter(requireContext(),
         android.R.layout.simple_list_item_1,

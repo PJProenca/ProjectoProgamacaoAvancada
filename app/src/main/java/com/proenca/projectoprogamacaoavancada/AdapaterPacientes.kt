@@ -21,6 +21,7 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
             val textViewNome = itemPacientes.findViewById<TextView>(R.id.textViewNomePaciente)
             val textViewDataNasc = itemPacientes.findViewById<TextView>(R.id.textViewDataNasc)
             val textViewAltura = itemPacientes.findViewById<TextView>(R.id.textViewAltura)
+
                 init {
                     itemPacientes.setOnClickListener(this)
                 }

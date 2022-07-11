@@ -42,25 +42,39 @@ class AdicionaEditaPacientes : Fragment() {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.itemAtual = R.menu.menu_guardar
-        if(arguments!=null){
+        if (arguments != null) {
             paciente = AdicionaEditaPacientesArgs.fromBundle(arguments!!).paciente
-            if(paciente != null){
+            if (paciente != null) {
                 binding.editTextNomePaciente.setText(paciente!!.nome)
                 binding.editTextAltura.setText(paciente!!.altura.toString())
+                val getData = paciente!!.dataNasc
+                val dateFormat = SimpleDateFormat("dd-MM-yyy")
+                data = dateFormat.format(dataNasc)
+
+                val dia = data.get(Calendar.DAY_OF_MONTH)
+                val mes =data.get(Calendar.MONTH)
+                val ano =data.get(Calendar.YEAR)
+                val calendar=Calendar.getInstance()
+//                binding.datePicker.init(){ view,ano,mes,dia ->
+//                    binding.datePicker.updateDate(1990,6,18)
+//                }
+
+
             }
         }
+        val picker = binding.datePicker
+        val currentDate = Calendar.getInstance()
+        picker.init(
+            currentDate.get(Calendar.YEAR),
+            currentDate.get(Calendar.MONTH),
+            currentDate.get(Calendar.DAY_OF_MONTH)
+        ) { view, ano, mes, dia ->
+            val mes = mes + 1
+            currentDate.set(ano, mes, dia)
+            dataNasc = currentDate.timeInMillis
 
-        val calendarView = binding.calendarView
-        dataNasc = calendarView.date
-        calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
-
-            val data = Calendar.getInstance()
-            data.set(ano,mes,dia)
-            dataNasc= data.timeInMillis
         }
-
     }
-
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_save -> {
@@ -94,23 +108,16 @@ class AdicionaEditaPacientes : Fragment() {
             return
         }
 
-//        val calendarView = binding.calendarView
-//        var dataNasc = calendarView.date
-//        calendarView.setOnDateChangeListener { calendarView, ano, mes, dia ->
-//
-//            val data = Calendar.getInstance()
-//            data.set(ano,mes,dia)
-//            dataNasc= data.timeInMillis
-//        }
-        val dateFormat = SimpleDateFormat("dd-MM-yyy")
 
-        data = dateFormat.format(dataNasc)
+
+
+
 
         val pacienteAdicionado =
             if(paciente == null){
-                adicionaPaciente(nome,data,altura)
+                adicionaPaciente(nome,dataNasc,altura)
             }else{
-                editaPaciente(nome,data,altura)
+                editaPaciente(nome,dataNasc,altura)
             }
 
 //
@@ -124,15 +131,15 @@ class AdicionaEditaPacientes : Fragment() {
 
     }
 
-    private fun adicionaPaciente(nome: String, data: String, altura: String): Boolean {
-        val paciente = Pacientes(nome,data.toLong(),altura.toLong())
+    private fun adicionaPaciente(nome: String, data: Long, altura: String): Boolean {
+        val paciente = Pacientes(nome,data,altura.toLong())
 
         val endereco = requireActivity().contentResolver.insert(myContentProvider.ENDERECO_PACIENTES,paciente.toContentValues())
         return endereco !=null
     }
 
-    private fun editaPaciente(nome: String, data: String, altura: String): Any {
-        val paciente = Pacientes(nome,data.toLong(),altura.toLong())
+    private fun editaPaciente(nome: String, data: Long, altura: String): Any {
+        val paciente = Pacientes(nome,data,altura.toLong())
         val enderecoPaciente = Uri.withAppendedPath(myContentProvider.ENDERECO_PACIENTES,"${this.paciente!!.id}")
         val endereco = requireActivity().contentResolver.update(enderecoPaciente,paciente.toContentValues(),null,null)
         return  endereco == 1
