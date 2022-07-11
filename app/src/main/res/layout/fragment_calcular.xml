@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/selectGlicemia"
         android:textColor="#009196"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:text="@string/pesoAlim"
         android:textColor="#009196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCalcularAlimentos"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCalcularAlimentos"
         tools:ignore="TextContrastCheck" />
 
     <TextView
@@ -68,7 +68,7 @@
         android:text="@string/SelecionarAlimentoText"
         android:textColor="#009196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCalcularPaciente"
+        app:layout_constraintTop_toBottomOf="@id/TextInputLayoutGlicemia"
         tools:ignore="TextContrastCheck" />
 
     <Spinner
@@ -93,16 +93,17 @@
         android:text="@string/SelectPeso"
         android:textColor="#009196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPesoAlim"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCalcularPaciente"
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPeso"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="@color/BackgroundApp"
+        app:boxStrokeColor="#009196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSelecPeso">
 
@@ -120,31 +121,47 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="@color/BackgroundApp"
+        app:boxStrokeColor="#009196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSelecPesoAlim">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/TextInputPesoAlim"
             android:layout_width="100dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputLayoutGlicemia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="@color/BackgroundApp"
+        app:boxStrokeColor="#009196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSelecGlicemia">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TextInputGlicemia"
             android:layout_width="100dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:inputType="number"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/calcAddAlimentoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/AddAlimentoCalc"
+        app:backgroundTint="#009196"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPesoAlim" />
 </androidx.constraintlayout.widget.ConstraintLayout>

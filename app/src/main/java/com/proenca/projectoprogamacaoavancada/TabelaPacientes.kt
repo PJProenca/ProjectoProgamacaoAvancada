@@ -14,6 +14,7 @@ class TabelaPacientes(db: SQLiteDatabase) : TabelasBD(db,NOME) {
         const val C_NOME = "Nome"
         const val C_DATA_NASC = "Data_de_Nascimento"
         const val C_ALTURA = "Altura"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
 
         val TODAS_COLUNAS = arrayOf(BaseColumns._ID, C_NOME, C_DATA_NASC, C_ALTURA)
     }

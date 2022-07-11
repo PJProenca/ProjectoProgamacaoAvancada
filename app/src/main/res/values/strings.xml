@@ -59,8 +59,9 @@
     <string name="editaAlimentoTitulo">Editar Alimento</string>
     <string name="buttonCalc">Calcular</string>
     <string name="SelecionarAlimentoText">Selecione o Alimento</string>
-    <string name="SelectPeso">Intoduza o Peso do Paciente</string>
-    <string name="pesoAlim">Intoduza o Peso do Alimento</string>
-    <string name="selectGlicemia">Intoduza o valor da Glicemia</string>
+    <string name="SelectPeso"> Introduza o Peso do Paciente (kg)</string>
+    <string name="pesoAlim"> Introduza o Peso do Alimento (gr)</string>
+    <string name="selectGlicemia"> Introduza o valor da Glicemia</string>
     <string name="validateCalc">Calcular</string>
+    <string name="AddAlimentoCalc">"Adicionar Alimento "</string>
 </resources>
