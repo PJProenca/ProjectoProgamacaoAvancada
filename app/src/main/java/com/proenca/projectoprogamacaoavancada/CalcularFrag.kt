@@ -1,4 +1,5 @@
 package com.proenca.projectoprogamacaoavancada
+
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.database.Cursor
@@ -20,23 +21,23 @@ import java.util.*
 import kotlin.math.pow
 
 
-class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
-    private var _binding: FragmentCalcularBinding?=null
+class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var _binding: FragmentCalcularBinding? = null
     private val binding get() = _binding!!
-    private var loader:CursorLoader?=null
+    private var loader: CursorLoader? = null
 
-    private var valorTotalAlimento:Int=0
-    private var valorCalculado:Int=0
-    private var nomePaciente:String? =""
-    private var altura:String?=""
-    private var pesoAlimento:String?=""
+    private var valorTotalAlimento: Int = 0
+    private var valorCalculado: Int = 0
+    private var nomePaciente: String? = ""
+    private var altura: String? = ""
+    private var pesoAlimento: String? = ""
 
     //private var currentDate:Long?=0L
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_PACIENTES,null,this)
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_ALIMENTOS,null,this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_PACIENTES, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_ALIMENTOS, null, this)
 
         val activity = requireActivity() as MainActivity
         activity.fragment = this
@@ -59,17 +60,17 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentCalcularBinding.inflate(inflater,container,false)
+        _binding = FragmentCalcularBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    fun processaOpcaoMenu(item: MenuItem): Boolean{
-        return when (item.itemId){
-            R.id.action_calc ->{
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_calc -> {
                 mostraInsulinaAdministrar()
                 true
             }
-            else ->false
+            else -> false
         }
     }
 
@@ -78,46 +79,53 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        if( id == ID_LOADER_PACIENTES){
-            loader= CursorLoader(requireContext(),myContentProvider.ENDERECO_PACIENTES,
-            TabelaPacientes.TODAS_COLUNAS,
-            null,
-            null,
-            TabelaPacientes.C_NOME)
-        }else  if( id == ID_LOADER_ALIMENTOS){
-            loader= CursorLoader(requireContext(),myContentProvider.ENDERECO_ALIMENTOS,
+        if (id == ID_LOADER_PACIENTES) {
+            loader = CursorLoader(
+                requireContext(), myContentProvider.ENDERECO_PACIENTES,
+                TabelaPacientes.TODAS_COLUNAS,
+                null,
+                null,
+                TabelaPacientes.C_NOME
+            )
+        } else if (id == ID_LOADER_ALIMENTOS) {
+            loader = CursorLoader(
+                requireContext(), myContentProvider.ENDERECO_ALIMENTOS,
                 TabelaAlimentos.TODAS_COLUNAS,
                 null,
                 null,
-                TabelaAlimentos.C_NOME)
+                TabelaAlimentos.C_NOME
+            )
         }
         return loader as CursorLoader
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
 
-        if(loader.id== ID_LOADER_PACIENTES){
-        binding.spinnerCalcularPaciente.adapter= SimpleCursorAdapter(requireContext(),
-            android.R.layout.simple_list_item_1,
-            data, arrayOf(TabelaPacientes.C_NOME),
-            intArrayOf(android.R.id.text1),0
-        )
-        }else if(loader.id== ID_LOADER_ALIMENTOS){
-        binding.spinnerCalcularAlimentos.adapter= SimpleCursorAdapter(requireContext(),
-            android.R.layout.simple_list_item_1,
-            data, arrayOf(TabelaAlimentos.C_NOME),
-            intArrayOf(android.R.id.text1),0)
+        if (loader.id == ID_LOADER_PACIENTES) {
+            binding.spinnerCalcularPaciente.adapter = SimpleCursorAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                data, arrayOf(TabelaPacientes.C_NOME),
+                intArrayOf(android.R.id.text1), 0
+            )
+        } else if (loader.id == ID_LOADER_ALIMENTOS) {
+            binding.spinnerCalcularAlimentos.adapter = SimpleCursorAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                data, arrayOf(TabelaAlimentos.C_NOME),
+                intArrayOf(android.R.id.text1), 0
+            )
         }
     }
 
-    companion object{
+    companion object {
         const val ID_LOADER_PACIENTES = 0
         const val ID_LOADER_ALIMENTOS = 1
     }
 
-    private fun guardarRegisto(){
+    private fun guardarRegisto() {
 
-        val currentDate= Calendar.getInstance()
+        val currentDate = Calendar.getInstance()
 
         val dataReg = currentDate.timeInMillis
         val spinPacientesSelect = binding.spinnerCalcularPaciente.selectedItemId
@@ -126,13 +134,13 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
             binding.spinnerCalcularPaciente.requestFocus()
             return
         }
-       val pesoPaciente = binding.TextInputPeso.text.toString()
+        val pesoPaciente = binding.TextInputPeso.text.toString()
         if (pesoPaciente.isBlank()) {
             binding.TextInputPeso.error = getString(R.string.campoObrigatorio)
             binding.TextInputPeso.requestFocus()
             return
         }
-        val glicemia=binding.TextInputGlicemia.text.toString()
+        val glicemia = binding.TextInputGlicemia.text.toString()
         if (glicemia.isBlank()) {
             binding.TextInputGlicemia.error = getString(R.string.campoObrigatorio)
             binding.TextInputGlicemia.requestFocus()
@@ -140,77 +148,111 @@ class CalcularFrag : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
         }
 
 
-
-        val pacientesValues = requireActivity().contentResolver.query(myContentProvider.ENDERECO_PACIENTES,TabelaPacientes.TODAS_COLUNAS,"${BaseColumns._ID} ="+ spinPacientesSelect,null,null)
-        if(pacientesValues !=null && pacientesValues.moveToFirst() ){
-                nomePaciente=pacientesValues.getString(pacientesValues.getColumnIndex(TabelaPacientes.C_NOME))
-                altura=pacientesValues.getString(pacientesValues.getColumnIndex(TabelaPacientes.C_ALTURA))
+        val pacientesValues = requireActivity().contentResolver.query(
+            myContentProvider.ENDERECO_PACIENTES,
+            TabelaPacientes.TODAS_COLUNAS,
+            "${BaseColumns._ID} =" + spinPacientesSelect,
+            null,
+            null
+        )
+        if (pacientesValues != null && pacientesValues.moveToFirst()) {
+            nomePaciente =
+                pacientesValues.getString(pacientesValues.getColumnIndex(TabelaPacientes.C_NOME))
+            altura =
+                pacientesValues.getString(pacientesValues.getColumnIndex(TabelaPacientes.C_ALTURA))
         }
 
-        val indiceSensibilidade = indiceDeSensibilidade(pesoPaciente.toDouble(),altura!!.toDouble())
-        val unidadePorGlicemia =(glicemia.toLong() - 120)/indiceSensibilidade!!.toLong()
+        val indiceSensibilidade =
+            indiceDeSensibilidade(pesoPaciente.toDouble(), altura!!.toDouble())
+        val unidadePorGlicemia = (glicemia.toLong() - 120) / indiceSensibilidade!!.toLong()
         val unidadeAdministrar = unidadePorGlicemia + valorCalculado
 
-        val regAdicionado = adicionaRegisto(dataReg,glicemia.toLong(),unidadeAdministrar,pesoPaciente.toDouble(),spinPacientesSelect)
-        if(regAdicionado !=null) {
+        val regAdicionado = adicionaRegisto(
+            dataReg,
+            glicemia.toLong(),
+            unidadeAdministrar,
+            pesoPaciente.toDouble(),
+            spinPacientesSelect
+        )
+        if (regAdicionado != null) {
             Toast.makeText(requireContext(), R.string.SucessRegAdd, Toast.LENGTH_LONG)
                 .show()
-        }else{
-            Snackbar.make(binding.textSelecPaciente,R.string.ErrorRegAdd,Snackbar.LENGTH_INDEFINITE).show()
+        } else {
+            Snackbar.make(
+                binding.textSelecPaciente,
+                R.string.ErrorRegAdd,
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
         }
 
     }
 
-    private fun mostraInsulinaAdministrar(){
+    private fun mostraInsulinaAdministrar() {
 
 
         val alert = AlertDialog.Builder(requireContext())
         alert.setTitle("UI Calculadas")
-        alert.setMessage("Unidades a Administrar: "+valorCalculado)
+        alert.setMessage("Unidades a Administrar: " + valorCalculado)
         alert.setPositiveButton("Confirmar",
-            DialogInterface.OnClickListener { dialog, wich ->  guardarRegisto() })
+            DialogInterface.OnClickListener { dialog, wich -> guardarRegisto() })
         alert.show()
     }
 
-    private fun calcularValorHidratos(): Int{
-        var valor:String? = ""
+    private fun calcularValorHidratos(): Int {
+        var valor: String? = ""
 
-        val spinAlimentosSelect = binding.spinnerCalcularPaciente.selectedItemId
-        val alimentosValues = requireActivity().contentResolver.query(myContentProvider.ENDERECO_ALIMENTOS,TabelaAlimentos.TODAS_COLUNAS,"${BaseColumns._ID} ="+ spinAlimentosSelect,null,null)
-        if(alimentosValues !=null && alimentosValues.moveToFirst() ){
-            valor=alimentosValues.getString(alimentosValues.getColumnIndex(TabelaAlimentos.C_VALOR))
+        val spinAlimentosSelect = binding.spinnerCalcularAlimentos.selectedItemId
+        val alimentosValues = requireActivity().contentResolver.query(
+            myContentProvider.ENDERECO_ALIMENTOS,
+            TabelaAlimentos.TODAS_COLUNAS,
+            "${BaseColumns._ID}=" + spinAlimentosSelect,
+            null,
+            null
+        )
+        if (alimentosValues != null && alimentosValues.moveToFirst()) {
+
+            valor = alimentosValues.getString(alimentosValues.getColumnIndex(TabelaAlimentos.C_VALOR))
+
         }
-         pesoAlimento = binding.TextInputPesoAlim.text.toString()
+        pesoAlimento = binding.TextInputPesoAlim.text.toString()
+
+        var gramasHidratos = (valor!!.toDouble() * pesoAlimento!!.toDouble()) / 100
+        var porcao = (gramasHidratos / 12) + 0.5
+        valorTotalAlimento += porcao!!.toInt()
 
 
-        var gramasHidratos= (valor!!.toDouble() * pesoAlimento!!.toDouble())/100
-        var porcao =  (gramasHidratos/12)+0.5
-        valorTotalAlimento+= porcao!!.toInt()
-        return valorTotalAlimento
+        return valorTotalAlimento!!
     }
 
 
-
-
-    private fun indiceDeSensibilidade(peso: Double,altura:Double):Int?{
-        val alturaEmMtrs=altura/100
-        val imcValue = peso/alturaEmMtrs.pow(2)
-         return when((Math.round(imcValue*10.0)/10.0)){
-          in 0.0..16.4 -> 100
-          in 16.5..18.4 -> 80
-          in 18.5..24.9 -> 65
-          in 25.0..34.9 -> 50
-          in 35.0..39.9 -> 35
-          in 40.0..Double.MAX_VALUE -> 15
+    private fun indiceDeSensibilidade(peso: Double, altura: Double): Int? {
+        val alturaEmMtrs = altura / 100
+        val imcValue = peso / alturaEmMtrs.pow(2)
+        return when ((Math.round(imcValue * 10.0) / 10.0)) {
+            in 0.0..16.4 -> 100
+            in 16.5..18.4 -> 80
+            in 18.5..24.9 -> 65
+            in 25.0..34.9 -> 50
+            in 35.0..39.9 -> 35
+            in 40.0..Double.MAX_VALUE -> 15
             else -> null
         }
     }
 
 
-    private fun adicionaRegisto( data_reg:Long,glicemia: Long, insulina: Long, peso: Double, id_paciente: Long):Boolean{
+    private fun adicionaRegisto(
+        data_reg: Long,
+        glicemia: Long,
+        insulina: Long,
+        peso: Double,
+        id_paciente: Long
+    ): Boolean {
         val registo = Registos(data_reg, glicemia, insulina, peso, id_paciente)
-        val endereco = requireActivity().contentResolver.insert(myContentProvider.ENDERECO_REGISTOS,registo.toContentValues())
-        return endereco !=null
+        val endereco = requireActivity().contentResolver.insert(
+            myContentProvider.ENDERECO_REGISTOS,
+            registo.toContentValues()
+        )
+        return endereco != null
     }
 
 }
