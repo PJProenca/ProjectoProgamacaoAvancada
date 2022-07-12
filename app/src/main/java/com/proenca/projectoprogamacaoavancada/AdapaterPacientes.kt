@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
 
 class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter<AdapaterPacientes.ViewHolderPacientes>() {
 
@@ -30,8 +31,11 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
             set(value) {
                 field=value
                 textViewNome.text = paciente?.nome?: ""
-                textViewDataNasc.text = paciente?.dataNasc.toString()
                 textViewAltura.text = paciente?.altura.toString()
+                val dateFormat = SimpleDateFormat("dd-MM-yyy")
+                val dataNasc = paciente?.dataNasc
+                val data= dateFormat.format(dataNasc)
+                textViewDataNasc.text = data
             }
 
         override fun onClick(p0: View?) {
