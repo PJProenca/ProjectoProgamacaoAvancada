@@ -123,10 +123,36 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         const val ID_LOADER_ALIMENTOS = 1
     }
 
-    private fun guardarRegisto() {
+    private fun guardarRegisto(
+        dataReg: Long,
+        unidadeAdministrar: Long,
+        pesoPaciente: Double,
+        spinPacientesSelect: Long,
+        glicemia: Long
+    ) {
+
+        val regAdicionado = adicionaRegisto(
+            dataReg,
+            glicemia,
+            unidadeAdministrar,
+            pesoPaciente,
+            spinPacientesSelect
+        )
+        if (regAdicionado != null) {
+            Toast.makeText(requireContext(), R.string.SucessRegAdd, Toast.LENGTH_LONG)
+                .show()
+        } else {
+            Snackbar.make(
+                binding.textSelecPaciente,
+                R.string.ErrorRegAdd,
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+        }
+    }
+
+    private fun mostraInsulinaAdministrar() {
 
         val currentDate = Calendar.getInstance()
-
         val dataReg = currentDate.timeInMillis
         val spinPacientesSelect = binding.spinnerCalcularPaciente.selectedItemId
         if (spinPacientesSelect.toString().isBlank()) {
@@ -147,7 +173,6 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-
         val pacientesValues = requireActivity().contentResolver.query(
             myContentProvider.ENDERECO_PACIENTES,
             TabelaPacientes.TODAS_COLUNAS,
@@ -167,34 +192,19 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val unidadePorGlicemia = (glicemia.toLong() - 120) / indiceSensibilidade!!.toLong()
         val unidadeAdministrar = unidadePorGlicemia + valorCalculado
 
-        val regAdicionado = adicionaRegisto(
-            dataReg,
-            glicemia.toLong(),
-            unidadeAdministrar,
-            pesoPaciente.toDouble(),
-            spinPacientesSelect
-        )
-        if (regAdicionado != null) {
-            Toast.makeText(requireContext(), R.string.SucessRegAdd, Toast.LENGTH_LONG)
-                .show()
-        } else {
-            Snackbar.make(
-                binding.textSelecPaciente,
-                R.string.ErrorRegAdd,
-                Snackbar.LENGTH_INDEFINITE
-            ).show()
-        }
-
-    }
-
-    private fun mostraInsulinaAdministrar() {
-
-
         val alert = AlertDialog.Builder(requireContext())
         alert.setTitle("UI Calculadas")
-        alert.setMessage("Unidades a Administrar: " + valorCalculado)
+        alert.setMessage("Unidades a Administrar: " + unidadeAdministrar)
         alert.setPositiveButton("Confirmar",
-            DialogInterface.OnClickListener { dialog, wich -> guardarRegisto() })
+            DialogInterface.OnClickListener { dialog, wich ->
+                guardarRegisto(
+                    dataReg,
+                    unidadeAdministrar,
+                    pesoPaciente.toDouble(),
+                    spinPacientesSelect,
+                    glicemia.toLong()
+                )
+            })
         alert.show()
     }
 
@@ -211,7 +221,8 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
         if (alimentosValues != null && alimentosValues.moveToFirst()) {
 
-            valor = alimentosValues.getString(alimentosValues.getColumnIndex(TabelaAlimentos.C_VALOR))
+            valor =
+                alimentosValues.getString(alimentosValues.getColumnIndex(TabelaAlimentos.C_VALOR))
 
         }
         pesoAlimento = binding.TextInputPesoAlim.text.toString()
