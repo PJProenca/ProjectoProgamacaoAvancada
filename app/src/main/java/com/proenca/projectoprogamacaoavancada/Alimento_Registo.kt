@@ -2,7 +2,6 @@ package com.proenca.projectoprogamacaoavancada
 
 import android.content.ContentValues
 import android.database.Cursor
-import android.provider.BaseColumns
 
 data class Alimento_Registo(var id_reg: Long,
                        var id_paciente: Long,

@@ -16,7 +16,8 @@
         android:textColor="#009196"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDataNasc" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDataNasc"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textViewAltura"
@@ -26,7 +27,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:hint="180 "
+        android:hint="@string/_180"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +41,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
-        android:hint="18/12/1985"
+        android:hint="@string/_18_12_1985"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPacienteDataNasc"
@@ -57,7 +58,8 @@
         android:textColor="#009196"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNomePaciente" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomePaciente"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textPacienteNome"
@@ -70,7 +72,8 @@
         android:textColor="#009196"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textViewNomePaciente"
@@ -79,7 +82,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
-        android:hint="Paulo Proença"
+        android:hint="@string/paulo_proen_a"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPacienteNome"

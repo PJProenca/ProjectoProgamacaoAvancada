@@ -96,8 +96,8 @@
     <fragment
         android:id="@+id/apagarAlimento"
         android:name="com.proenca.projectoprogamacaoavancada.ApagarAlimento"
-        android:label="fragment_apagar_alimento"
-        tools:layout="@layout/fragment_apagar_alimento" >
+        android:label="@string/ApagarAlimentoTitulo"
+        tools:layout="@layout/fragment_apagar_alimento">
         <action
             android:id="@+id/action_apagarAlimento_to_alimentos_opcoes"
             app:destination="@id/alimentos_opcoes" />

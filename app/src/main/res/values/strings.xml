@@ -67,4 +67,12 @@
     <string name="SucessRegAdd">Registo Adiconado com Sucesso!!</string>
     <string name="ErrorRegAdd">Erro ao Adicionar Registo !!</string>
     <string name="fragment_calcular">Calcular UI</string>
+    <string name="RegeNumber">Registo nº: </string>
+    <string name="reg_one">1</string>
+    <string name="RegeData">Data de Registo: </string>
+    <string name="RegNomePaciente">Nome do Paciente</string>
+    <string name="PacientePeso">Peso do Paciente (Kg) </string>
+    <string name="peso">55.5</string>
+    <string name="RegGlicemia">Glicemia: </string>
+    <string name="InsulinaReg">"Insulina(Uni): "</string>
 </resources>
