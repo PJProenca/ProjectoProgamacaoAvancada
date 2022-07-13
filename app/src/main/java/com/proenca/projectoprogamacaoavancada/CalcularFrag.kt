@@ -258,7 +258,7 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         peso: Double,
         id_paciente: Long
     ): Boolean {
-        val registo = Registos(data_reg, glicemia, insulina, peso, id_paciente)
+        val registo = Registos(data_reg, glicemia, insulina, peso, Pacientes(id = id_paciente))
         val endereco = requireActivity().contentResolver.insert(
             myContentProvider.ENDERECO_REGISTOS,
             registo.toContentValues()

@@ -8,7 +8,7 @@ data class Registos(var data_reg:Long,
                     var glicemia: Long,
                     var insulina: Long,
                     var peso: Double,
-                    var id_paciente: Long,
+                    var paciente: Pacientes,
                     var id:Long=-1) {
 
     fun toContentValues(): ContentValues{
@@ -17,7 +17,7 @@ data class Registos(var data_reg:Long,
         valores.put(TabelaRegistos.GLICEMIA,glicemia)
         valores.put(TabelaRegistos.INSULINA,insulina)
         valores.put(TabelaRegistos.PESO,peso)
-        valores.put(TabelaRegistos.ID_PACIENTE,id_paciente)
+        valores.put(TabelaRegistos.ID_PACIENTE,paciente.id)
         return valores
     }
 
@@ -29,6 +29,7 @@ data class Registos(var data_reg:Long,
             val glicemia_pos = cursor.getColumnIndex(TabelaRegistos.GLICEMIA)
             val insulina_pos = cursor.getColumnIndex(TabelaRegistos.INSULINA)
             val peso_pos = cursor.getColumnIndex(TabelaRegistos.PESO)
+            val nome_paciente_pos=cursor.getColumnIndex(TabelaPacientes.C_NOME)
 
             val id_reg = cursor.getLong(id_reg_pos)
             val id_paciente = cursor.getLong(id_paciente_pos)
@@ -36,7 +37,11 @@ data class Registos(var data_reg:Long,
             val glicemia = cursor.getLong(glicemia_pos)
             val insulina = cursor.getLong(insulina_pos)
             val peso = cursor.getDouble(peso_pos)
-            return Registos(data_reg,glicemia,insulina,peso,id_paciente,id_reg)
+            val nomePaciente = cursor.getString(nome_paciente_pos)
+
+            val paciente = Pacientes(nomePaciente,id_paciente)
+
+            return Registos(data_reg,glicemia,insulina,peso,paciente,id_reg)
         }
     }
 }

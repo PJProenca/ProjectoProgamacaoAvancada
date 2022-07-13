@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFrag_to_calcularFrag"
             app:destination="@id/calcularFrag" />
+        <action
+            android:id="@+id/action_MenuPrincipalFrag_to_registoOpcoes"
+            app:destination="@id/registoOpcoes" />
     </fragment>
     <fragment
         android:id="@+id/PacienteOpcoesFrag"
@@ -110,4 +113,9 @@
         android:name="com.proenca.projectoprogamacaoavancada.CalcularFrag"
         android:label="@string/fragment_calcular"
         tools:layout="@layout/fragment_calcular" />
+    <fragment
+        android:id="@+id/registoOpcoes"
+        android:name="com.proenca.projectoprogamacaoavancada.RegistoOpcoes"
+        android:label="fragment_registo_opcoes"
+        tools:layout="@layout/fragment_registo_opcoes" />
 </navigation>

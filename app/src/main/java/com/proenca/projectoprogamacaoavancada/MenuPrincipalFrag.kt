@@ -39,6 +39,9 @@ class MenuPrincipalFrag : Fragment() {
         binding.buttonAlimentos.setOnClickListener {
             findNavController().navigate(R.id.action_MenuPrincipalFrag_to_alimentos_opcoes)
         }
+        binding.buttonRegistos.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuPrincipalFrag_to_registoOpcoes)
+        }
 
         binding.buttonCalcular.setOnClickListener {
             findNavController().navigate(R.id.action_MenuPrincipalFrag_to_calcularFrag)

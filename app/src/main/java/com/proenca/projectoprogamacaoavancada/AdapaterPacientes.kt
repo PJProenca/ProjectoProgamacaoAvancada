@@ -3,13 +3,11 @@ package com.proenca.projectoprogamacaoavancada
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 
-class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter<AdapaterPacientes.ViewHolderPacientes>(),Filterable {
+class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter<AdapaterPacientes.ViewHolderPacientes>() {
 
     var cursor:Cursor? =null
     get() = field
@@ -84,7 +82,4 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
         var selec : ViewHolderPacientes?= null
     }
 
-    override fun getFilter(): Filter {
-        TODO("Not yet implemented")
-    }
 }
