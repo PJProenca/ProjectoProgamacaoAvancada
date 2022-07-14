@@ -13,8 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.proenca.projectoprogamacaoavancada.databinding.FragmentApagarPacienteBinding
-
-
+import java.text.SimpleDateFormat
 
 
 /**
@@ -38,7 +37,10 @@ class ApagarPacienteFrag : Fragment() {
         paciente = ApagarPacienteFragArgs.fromBundle(arguments!!).paciente
         binding.textViewNomePacienteApaga.text = paciente.nome
         binding.textViewPacienteAlturaApagar.text = paciente.altura.toString()
-        binding.textViewDataNascApaga.text = paciente.dataNasc.toString()
+        val dateFormat = SimpleDateFormat("dd-MM-yyy")
+        val dataNasc = paciente.dataNasc
+        val data = dateFormat.format(dataNasc)
+        binding.textViewDataNascApaga.text = data
     }
 
     override fun onDestroyView() {

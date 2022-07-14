@@ -116,6 +116,25 @@
     <fragment
         android:id="@+id/registoOpcoes"
         android:name="com.proenca.projectoprogamacaoavancada.RegistoOpcoes"
-        android:label="fragment_registo_opcoes"
-        tools:layout="@layout/fragment_registo_opcoes" />
+        android:label="@string/fragment_registo_opcoes"
+        tools:layout="@layout/fragment_registo_opcoes" >
+        <action
+            android:id="@+id/action_registoOpcoes_to_apagarRegisto"
+            app:destination="@id/apagarRegisto" />
+        <action
+            android:id="@+id/action_registoOpcoes_to_calcularFrag"
+            app:destination="@id/calcularFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/apagarRegisto"
+        android:name="com.proenca.projectoprogamacaoavancada.ApagarRegisto"
+        android:label="@string/fragment_apagar_registo"
+        tools:layout="@layout/fragment_apagar_registo" >
+        <action
+            android:id="@+id/action_apagarRegisto_to_registoOpcoes"
+            app:destination="@id/registoOpcoes" />
+        <argument
+            android:name="registo"
+            app:argType="com.proenca.projectoprogamacaoavancada.Registos" />
+    </fragment>
 </navigation>

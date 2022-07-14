@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(itemAtual, menu)
         this.menu = menu
+
         return true
     }
 
@@ -69,6 +69,10 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as ApagarAlimento).processaOpcaoMenu(item)
         }else if(fragment is CalcularFrag){
             opcaoProcessada = (fragment as CalcularFrag).processaOpcaoMenu(item)
+        }else if(fragment is RegistoOpcoes){
+            opcaoProcessada = (fragment as RegistoOpcoes).processaOpcaoMenu(item)
+        }else if(fragment is ApagarRegisto){
+            opcaoProcessada = (fragment as ApagarRegisto).processaOpcaoMenu(item)
         }else{
             opcaoProcessada = false
         }
@@ -91,6 +95,8 @@ class MainActivity : AppCompatActivity() {
     fun atualizaOpcoes(mostraAlterarEliminar: Boolean) {
         menu!!.findItem(R.id.action_edit).setVisible(mostraAlterarEliminar)
         menu!!.findItem(R.id.action_delete).setVisible(mostraAlterarEliminar)
+        menu!!.findItem(R.id.action_add).setVisible(false)
+
     }
 
     fun alterarTitulo(id_titulo : Int){

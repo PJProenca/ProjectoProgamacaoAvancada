@@ -15,7 +15,7 @@ import com.proenca.projectoprogamacaoavancada.databinding.FragmentAdicionaEditaP
 import java.util.*
 
 
-class AdicionaEditaPacientes : Fragment() {
+class AdicionaEditaPacientes : Fragment()  {
     private var _binding: FragmentAdicionaEditaPacientesBinding? = null
 
     private val binding get() = _binding!!
@@ -37,11 +37,15 @@ class AdicionaEditaPacientes : Fragment() {
         _binding = null
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val activity = activity as MainActivity
         activity.fragment = this
         activity.itemAtual = R.menu.menu_guardar
+
+
         if (arguments != null) {
             paciente = AdicionaEditaPacientesArgs.fromBundle(arguments!!).paciente
             if (paciente != null) {

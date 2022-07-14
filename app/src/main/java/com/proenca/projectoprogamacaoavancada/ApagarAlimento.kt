@@ -58,6 +58,7 @@ class ApagarAlimento : Fragment() {
         return when (item.itemId){
             R.id.action_delete ->{
                 confirmaApagarAlimento()
+
                 true
             }
             R.id.action_cancel ->{
@@ -77,6 +78,7 @@ class ApagarAlimento : Fragment() {
         alert.setPositiveButton(R.string.apagar_confirmacao,
             DialogInterface.OnClickListener { dialog, wich -> apagarAlimento()  })
         alert.show()
+
     }
 
     private fun apagarAlimento() {

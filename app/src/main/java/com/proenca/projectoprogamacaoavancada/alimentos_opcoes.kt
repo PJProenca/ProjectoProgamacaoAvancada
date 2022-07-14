@@ -41,7 +41,7 @@ class alimentos_opcoes : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
         binding.recyclerViewAlimentos.layoutManager = LinearLayoutManager(requireContext())
         val activity = requireActivity() as MainActivity
         activity.fragment = this
-        activity.itemAtual = R.menu.menu_barra
+        activity.itemAtual = R.menu.menu_barra1_alim
     }
 
 

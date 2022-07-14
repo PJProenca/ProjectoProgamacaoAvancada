@@ -3,13 +3,14 @@ package com.proenca.projectoprogamacaoavancada
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Registos(var data_reg:Long,
                     var glicemia: Long,
                     var insulina: Long,
                     var peso: Double,
                     var paciente: Pacientes,
-                    var id:Long=-1) {
+                    var id:Long=-1): Serializable {
 
     fun toContentValues(): ContentValues{
         val valores = ContentValues()

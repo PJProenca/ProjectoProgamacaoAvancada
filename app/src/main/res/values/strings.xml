@@ -75,4 +75,12 @@
     <string name="peso">55.5</string>
     <string name="RegGlicemia">Glicemia: </string>
     <string name="InsulinaReg">"Insulina(Uni): "</string>
+    <string name="fragment_registo_opcoes">Lista de Registos</string>
+    <string name="fragment_apagar_registo">Apagar Registo</string>
+    <string name="APAGAR_REGISTO_TITLE">Apagar Registo</string>
+    <string name="ConfirmaApagaRegisto">Tem a certeza que pretende eliminar o Registo?</string>
+    <string name="delete_sucess_registo">Registo Apagado com Sucesso!</string>
+    <string name="delete_error_registo">Erro ao apagar Registo!!</string>
+    <string name="action_cancel">action_cancel</string>
+    <string name="ver_alimento_por_registo">Ver alimento por Registo</string>
 </resources>
