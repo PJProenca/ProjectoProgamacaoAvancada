@@ -25,12 +25,13 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentCalcularBinding? = null
     private val binding get() = _binding!!
     private var loader: CursorLoader? = null
-
+    private var alimentosList = ArrayList<String>()
     private var valorTotalAlimento: Int = 0
     private var valorCalculado: Int = 0
     private var nomePaciente: String? = ""
     private var altura: String? = ""
     private var pesoAlimento: String? = ""
+    private var lastInsert :String?=""
 
     //private var currentDate:Long?=0L
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -138,9 +139,17 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             pesoPaciente,
             spinPacientesSelect
         )
+
+        for (alimento_Id in alimentosList){
+            var alimentoReg=Alimento_Registo(lastInsert!!.toLong(),spinPacientesSelect,alimento_Id.toLong())
+            requireContext().contentResolver.insert(myContentProvider.ENDERECO_ALIMENTO_REG,alimentoReg.toContentValues())
+        }
+
         if (regAdicionado != null) {
             Toast.makeText(requireContext(), R.string.SucessRegAdd, Toast.LENGTH_LONG)
                 .show()
+
+
         } else {
             Snackbar.make(
                 binding.textSelecPaciente,
@@ -223,6 +232,8 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
             valor =
                 alimentosValues.getString(alimentosValues.getColumnIndex(TabelaAlimentos.C_VALOR))
+            alimentosList.add(valor)
+
 
         }
         pesoAlimento = binding.TextInputPesoAlim.text.toString()
@@ -259,10 +270,13 @@ class CalcularFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         id_paciente: Long
     ): Boolean {
         val registo = Registos(data_reg, glicemia, insulina, peso, Pacientes(id = id_paciente))
-        val endereco = requireActivity().contentResolver.insert(
+         val endereco = requireActivity().contentResolver.insert(
             myContentProvider.ENDERECO_REGISTOS,
             registo.toContentValues()
         )
+
+        lastInsert=endereco!!.lastPathSegment
+
         return endereco != null
     }
 

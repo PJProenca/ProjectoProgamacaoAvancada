@@ -37,6 +37,8 @@ class myContentProvider: ContentProvider() {
             URI_ALIMENTOS_ESP -> TabelaAlimentos(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
             URI_REGISTOS -> TabelaRegistos(db).query(colunas,selection,selArgs,null,null,sortOrder)
             URI_REGISTOS_ESP -> TabelaRegistos(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
+            URI_ALIM_REG -> TabelaAlimento_Registo(db).query(colunas,selection,selArgs,null,null,sortOrder)
+            URI_ALIM_REG_ESP -> TabelaAlimento_Registo(db).query(colunas,"${BaseColumns._ID}=?", arrayOf("$id"),null,null,null)
             else -> null
         }
         return cursor
@@ -47,9 +49,12 @@ class myContentProvider: ContentProvider() {
             URI_PACIENTES ->"$REGISTOS_MULTIPLOS/${TabelaPacientes.NOME}"
             URI_ALIMENTOS ->"$REGISTOS_MULTIPLOS/${TabelaAlimentos.NOME}"
             URI_REGISTOS ->"$REGISTOS_MULTIPLOS/${TabelaRegistos.NOME}"
+            URI_ALIM_REG ->"$REGISTOS_MULTIPLOS/${TabelaAlimento_Registo.NOME}"
             URI_PACIENTE_ESP ->"$REGISTO_UNICO/${TabelaPacientes.NOME}"
             URI_ALIMENTOS_ESP ->"$REGISTO_UNICO/${TabelaAlimentos.NOME}"
             URI_REGISTOS_ESP ->"$REGISTO_UNICO/${TabelaRegistos.NOME}"
+            URI_ALIM_REG_ESP ->"$REGISTO_UNICO/${TabelaAlimento_Registo.NOME}"
+
             else -> null
         }
 
@@ -125,6 +130,7 @@ class myContentProvider: ContentProvider() {
         val ENDERECO_PACIENTES = Uri.withAppendedPath(ENDERCO_BASE,TabelaPacientes.NOME)
         val ENDERECO_ALIMENTOS = Uri.withAppendedPath(ENDERCO_BASE,TabelaAlimentos.NOME)
         val ENDERECO_REGISTOS = Uri.withAppendedPath(ENDERCO_BASE,TabelaRegistos.NOME)
+        val ENDERECO_ALIMENTO_REG = Uri.withAppendedPath(ENDERCO_BASE,TabelaAlimento_Registo.NOME)
 
 
 
