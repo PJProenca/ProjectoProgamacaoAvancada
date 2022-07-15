@@ -71,8 +71,10 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as CalcularFrag).processaOpcaoMenu(item)
         }else if(fragment is RegistoOpcoes){
             opcaoProcessada = (fragment as RegistoOpcoes).processaOpcaoMenu(item)
+
         }else if(fragment is ApagarRegisto){
             opcaoProcessada = (fragment as ApagarRegisto).processaOpcaoMenu(item)
+
         }else{
             opcaoProcessada = false
         }
@@ -96,6 +98,8 @@ class MainActivity : AppCompatActivity() {
         menu!!.findItem(R.id.action_edit).setVisible(mostraAlterarEliminar)
         menu!!.findItem(R.id.action_delete).setVisible(mostraAlterarEliminar)
         menu!!.findItem(R.id.action_add).setVisible(false)
+        if (fragment is RegistoOpcoes) menu!!.findItem(R.id.action_edit).setVisible(false)
+
 
     }
 
