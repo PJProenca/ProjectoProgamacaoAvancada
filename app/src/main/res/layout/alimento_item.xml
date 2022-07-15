@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/AlimentosHidratos"
         android:textColor="#009196"
         android:textSize="20sp"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/NomeAlimento"
         android:textColor="#009196"
         android:textSize="20sp"
@@ -57,7 +57,7 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textAlimentoNome"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck"/>
 
     <View
         android:id="@+id/divider2"

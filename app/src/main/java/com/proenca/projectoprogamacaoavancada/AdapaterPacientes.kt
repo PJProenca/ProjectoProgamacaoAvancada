@@ -23,6 +23,7 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
             val textViewDataNasc = itemPacientes.findViewById<TextView>(R.id.textViewDataNasc)
             val textViewAltura = itemPacientes.findViewById<TextView>(R.id.textViewAltura)
 
+
                 init {
                     itemPacientes.setOnClickListener(this)
                 }
@@ -41,20 +42,17 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
         override fun onClick(p0: View?) {
             selec?.desseleciona()
             this.seleciona()
-
         }
 
         private fun seleciona() {
             selec = this
             fragment.pacienteSelec = paciente
-            itemView.setBackgroundResource(android.R.color.holo_blue_dark)
-        }
-
-        private fun desseleciona() {
             itemView.setBackgroundResource(android.R.color.darker_gray)
         }
 
-
+        private fun desseleciona() {
+            itemView.setBackgroundResource(R.color.BackgroundApp)
+        }
     }
 
 
@@ -70,7 +68,7 @@ class AdapaterPacientes(val fragment: PacienteOpcoesFrag) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolderPacientes, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.paciente=Pacientes.fromCursor(cursor!!)
+       holder.paciente=Pacientes.fromCursor(cursor!!)
     }
 
     override fun getItemCount(): Int {

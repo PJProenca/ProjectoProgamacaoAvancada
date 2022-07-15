@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -43,7 +42,6 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentPacientesOpcoesBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -56,11 +54,15 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         adapterPacientes = AdapaterPacientes(this)
         binding.recyclerViewPacientes.adapter = adapterPacientes
         binding.recyclerViewPacientes.layoutManager = LinearLayoutManager(requireContext())
+
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.itemAtual = R.menu.menu_barra
 
     }
+
+
+
 
     fun processaOpcaoMenu(item: MenuItem): Boolean{
         return when(item.itemId){
@@ -105,23 +107,23 @@ class PacienteOpcoesFrag : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
 
         adapterPacientes!!.cursor = data
-        binding.spinnerPacientes.adapter=SimpleCursorAdapter(requireContext(),
-        android.R.layout.simple_list_item_1,
-        data, arrayOf(TabelaPacientes.C_NOME),
-        intArrayOf(android.R.id.text1),0
-        )
+//        binding.spinnerPacientes.adapter=SimpleCursorAdapter(requireContext(),
+//        android.R.layout.simple_list_item_1,
+//        data, arrayOf(TabelaPacientes.C_NOME),
+//        intArrayOf(android.R.id.text1),0
+//        )
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
 
         if(_binding == null) return
         adapterPacientes!!.cursor = null
-
-        binding.spinnerPacientes.adapter=null
+//        binding.spinnerPacientes.adapter=null
 
     }
 
     companion object{
         const val ID_LOADER_PACIENTES = 0
+
     }
 }

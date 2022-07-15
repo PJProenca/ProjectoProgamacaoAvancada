@@ -40,11 +40,11 @@ class AdapterAlimentos(val fragment: alimentos_opcoes): RecyclerView.Adapter<Ada
         private fun seleciona() {
             selec = this
             fragment.alimentoSelect = alimento
-            itemView.setBackgroundResource(android.R.color.holo_blue_dark)
+            itemView.setBackgroundResource(android.R.color.darker_gray)
         }
 
         private fun desseleciona() {
-            itemView.setBackgroundResource(android.R.color.darker_gray)
+            itemView.setBackgroundResource(R.color.BackgroundApp)
         }
     }
 

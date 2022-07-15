@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/IPG/ProgramacaoAvancada/AndroidCode/ProjectoProgamacaoAvancada/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/IPG/ProgramacaoAvancada/AndroidCode/ProjectoProgamacaoAvancada/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.123" />
+        <entry key="..\:/IPG/ProgramacaoAvancada/AndroidCode/ProjectoProgamacaoAvancada/app/src/main/res/drawable/ic_launcher_background.xml" value="0.123" />
+        <entry key="..\:/IPG/ProgramacaoAvancada/AndroidCode/ProjectoProgamacaoAvancada/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/IPG/ProgramacaoAvancada/AndroidCode/ProjectoProgamacaoAvancada/app/src/main/res/layout/alimento_item.xml" value="0.25" />
         <entry key="..\:/IPG/ProgramacaoAvancada/AndroidCode/ProjectoProgamacaoAvancada/app/src/main/res/layout/alimento_itrm.xml" value="0.134375" />
         <entry key="..\:/IPG/ProgramacaoAvancada/AndroidCode/ProjectoProgamacaoAvancada/app/src/main/res/layout/alimentos_opcoes.xml" value="0.19157608695652173" />
